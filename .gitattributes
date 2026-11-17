@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.b85 binary
+*.bin binary
+*.dll binary
+third_party/font_licenses/* whitespace=-blank-at-eol

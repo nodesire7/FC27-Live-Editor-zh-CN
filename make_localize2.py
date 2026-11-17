@@ -1,0 +1,1085 @@
+# -*- coding: utf-8 -*-
+# FC 27 Live Editor 中文本地化（loc/eng_us/localize.json）
+import argparse
+import json
+from pathlib import Path
+
+T = {
+ # ================= 窗口 / 模块 =================
+ "player_editor": "球员编辑器", "team_editor": "球队编辑器", "manager_editor": "经理编辑器",
+ "formation_editor": "阵型编辑器", "gameplay_editor": "玩法编辑", "gameplay_settings": "玩法设置",
+ "database_editor": "数据库编辑器", "director_editor_ds": "总监编辑器",
+ "live_editor": "实况编辑器", "live_editor_sql": "实况编辑器 SQL",
+ "misc_features": "杂项功能", "le_misc_features": "LE 杂项功能", "about_misc_features": "关于杂项功能",
+ "game_database": "游戏数据库", "player_editor_ds": "球员编辑器", "team_editor_ds": "球队编辑器",
+ "formation_editor_ds": "阵型编辑器", "manager_editor_ds": "经理编辑器",
+ # ================= 通用 =================
+ "basic_info": "基本信息", "basic_filter_input": "基础筛选", "adv_filter_container": "高级筛选",
+ "adv_f_list": "高级筛选列表", "add_filter": "添加筛选", "add_custom_option": "添加自定义选项",
+ "add_option_id": "添加选项 ID", "add_option_name": "添加选项名称", "add_adv_filter_input": "高级筛选",
+ "add_list_to_adv_filter_tooltip": "加入高级筛选列表",
+ "add_to_adv_filter_list_tooltip": "加入高级筛选列表",
+ "clear_adv_filter_list_tooltip": "清空高级筛选列表",
+ "save_adv_filter_list_tooltip": "保存高级筛选列表",
+ "option_name": "选项名称", "option_value": "选项值", "field_name": "字段名", "field_value": "字段值",
+ "field_type_name": "字段类型", "field_desc_map": "字段说明", "fields_filter": "字段筛选",
+ "fields_list": "字段列表", "file_name": "文件名", "files_table": "文件列表",
+ "filter_fval": "浮点筛选", "filter_ival": "整数筛选", "filter_sval": "文本筛选",
+ "filter_range": "范围筛选", "filters_storage": "筛选保存目录",
+ "first_record": "首条记录", "out_col": "输出列", "raw_header": "原始表头",
+ "table_name": "表名", "table_name_filter_input": "表名筛选", "table_row_count": "行数",
+ "table_container": "表格", "table_adv_filter": "高级筛选", "table_filter_add": "添加筛选",
+ "table_filter_clear": "清除筛选", "table_custom_popup": "自定义",
+ "table_info_1": "表信息", "table_info_2": "表信息", "table_info_3": "表信息",
+ "tbl_column_filter_input": "列筛选", "show_hide_columns": "显示/隐藏列",
+ "size_all_column_to_fit": "所有列自适应宽度", "show_file_info": "显示文件信息",
+ "view_as_text": "以文本查看", "loading_player_names": "正在加载球员姓名…",
+ # ================= 球员 =================
+ "player_name": "球员姓名", "player_nameids": "名称 ID", "player_nameids_table": "名称 ID 表",
+ "player_tooltip": "球员", "player_info_tooltip": "球员信息",
+ "player_edited_names_table": "球员改名记录",
+ "player_preset": "球员预设", "player_presets": "球员预设", "player_preset_group": "球员预设组",
+ "player_preset_file": "球员预设文件", "player_preset_option": "球员预设选项",
+ "player_preset_source": "球员预设来源",
+ "player_preset_import_advanced_options": "导入高级选项",
+ "player_preset_import_birthdate": "导入出生日期",
+ "player_preset_import_headasset": "导入头部模型", "player_preset_import_name": "导入姓名",
+ "player_hot_prospect": "热门新星", "player_captain": "队长", "player_best": "最佳球员",
+ "playerid_is_unique_tooltip": "球员 ID 唯一",
+ "players_info": "球员信息", "players_table": "球员表", "players_table_container": "球员列表",
+ "players_list_main_table": "球员主表", "players_in_team_table": "球队球员",
+ "players_in_formation_table": "首发球员",
+ "players_add_filter_hint": "添加筛选…", "players_base_filter_hint": "基础筛选…",
+ "players_table_eraser_tooltip": "清除筛选", "players_table_filter_tooltip": "筛选球员",
+ "players_table_search_tooltip": "搜索球员",
+ "current_male_players": "当前男足球员", "current_female_players": "当前女足球员",
+ "bulk_edit_players_popup": "批量编辑球员",
+ "export_player_to_preset_popup": "导出球员到预设", "export_to_preset": "导出到预设",
+ "import_from_preset": "从预设导入", "import_miniface": "导入小头像",
+ "edit_player_club": "编辑球员俱乐部", "edit_player_name": "编辑球员姓名",
+ "edit_player_name_custom_name": "自定义姓名", "edit_player_name_nameids": "名称 ID",
+ "delete_player_warning": "删除球员警告", "delete_player_warning_checkbox": "不再提示",
+ "show_del_player_warning": "显示删除球员警告",
+ "show_del_player_warning_tooltip": "删除球员时显示确认",
+ "show_del_row_warning": "显示删除行警告", "show_del_row_warning_tooltip": "删除行时显示确认",
+ "delete_row_warning": "删除行警告", "delete_row_warning_checkbox": "不再提示",
+ "reveal_player_data_tooltip": "显示球员隐藏数据",
+ "reveal_ya_player_data_tooltip": "显示青训球员隐藏数据",
+ "hide_player_potential_tooltip": "隐藏球员潜力",
+ "show_player_potential_tooltip": "显示球员潜力",
+ "force_player_tier_tooltip": "强制球员档次",
+ "unlock_all_playstyles_slots_tooltip": "解锁全部比赛风格槽位",
+ "playstyles_count_essential_min": "核心风格数下限", "playstyles_count_essential_max": "核心风格数上限",
+ "playstyles_count_additional_min": "附加风格数下限", "playstyles_count_additional_max": "附加风格数上限",
+ "preferredfoot_1": "右脚", "preferredfoot_2": "左脚",
+ "sm_tooltip": "逆足技术（SM）", "wf_tooltip": "逆足（WF）", "sm_wf_tooltip": "逆足（SM/WF）",
+ "best_at_pos_tooltip": "最佳位置", "total_attr_tooltip": "总属性",
+ "int_attributes": "整数属性", "att_skills": "属性与技能",
+ "personality_group": "个性", "reputation_group": "声望", "rules_group": "规则",
+ "trait1_names": "特性一", "trait2_names": "特性二", "icontrait1_names": "图标特性",
+ "trait1vequal_names": "特性一", "trait1vstrong_names": "特性一（强）", "trait1vweak_names": "特性一（弱）",
+ # ================= 概览 / 属性 =================
+ "overview_bio_group": "基本资料", "overview_images_group": "图片",
+ "overview_players_images_group": "球员图片", "overview_kits_images_group": "球衣图片",
+ "overview_manager_image_group": "经理图片", "overview_attr_matrix_group": "属性矩阵",
+ "overview_best_at_group": "最佳位置", "overview_squad_bio_group": "阵容资料",
+ "overview_player_value": "球员身价", "market_value": "市场价值",
+ "value_to_release_clause_ratio": "身价/解约金比例",
+ "overview_player_value_tooltip": "球员身价", "overview_player_wage_tooltip": "球员工资",
+ "overview_players_worth_tooltip": "阵容总价值", "overview_squad_size_tooltip": "阵容人数",
+ "overview_u18_tooltip": "U18 球员数", "overview_u21_tooltip": "U21 球员数",
+ "overview_xi_players_worth_tooltip": "首发总价值", "overview_avg_age_tooltip": "平均年龄",
+ "overview_avg_height_tooltip": "平均身高", "overview_avg_weight_tooltip": "平均体重",
+ "overview_bio_foot_tooltip": "惯用脚", "overview_bio_height_tooltip": "身高",
+ "overview_bio_weight_tooltip": "体重", "overview_bio_ovr_pot_tooltip": "总评/潜力",
+ "overview_bio_positions_tooltip": "位置", "overview_bio_real_face_tooltip": "真实脸型",
+ "overview_bio_starrating_tooltip": "星级",
+ # ================= 球队 =================
+ "team_tooltip": "球队", "team_editor_team_kits_tab": "球衣",
+ "team_editor_team_kits_general_tab": "常规", "team_editor_team_kits_jersey_tab": "上衣",
+ "team_editor_team_kits_shorts_tab": "短裤",
+ "team_kit_color_1": "球衣颜色 1", "team_kit_color_2": "球衣颜色 2", "team_kit_color_3": "球衣颜色 3",
+ "team_is_loanedout_tooltip": "已租出", "team_not_transfer_banned": "未禁止转会",
+ "team_standing_table_home": "主场", "team_standing_table_away": "客场",
+ "team_standing_table_ovr": "总",
+ "teams_picker_group": "选择球队", "teams_table_container": "球队列表",
+ "teams_list_main_table": "球队主表", "teams_add_filter_hint": "添加筛选…",
+ "teams_base_filter_hint": "基础筛选…", "teams_table_eraser_tooltip": "清除筛选",
+ "teams_table_filter_tooltip": "筛选球队", "teams_table_search_tooltip": "搜索球队",
+ "edit_team_name": "编辑球队名称", "stadium_name": "球场名称",
+ "t_info": "球队信息", "t_stadium": "球场", "t_coach": "教练",
+ "t_s_scout": "高级球探", "t_y_scout": "青年球探",
+ "home_minikit_tooltip": "主场球衣", "away_minikit_tooltip": "客场球衣",
+ "gk_minikit_tooltip": "门将球衣", "third_minikit_tooltip": "第三球衣",
+ "jersey_name_color": "球衣号码颜色", "jersey_name_outline_color": "号码描边颜色",
+ "custom_team_names": "自定义球队名", "rng_team_tooltip": "随机球队",
+ "opponent_team": "对手球队", "target_team": "目标球队",
+ # ================= 经理 / 职员 =================
+ "manager_tooltip": "经理", "manager_editor": "经理编辑器",
+ "managers_table_container": "经理列表", "managers_list_main_table": "经理主表",
+ "managers_add_filter_hint": "添加筛选…", "managers_base_filter_hint": "基础筛选…",
+ "managers_table_eraser_tooltip": "清除筛选", "managers_table_filter_tooltip": "筛选经理",
+ "managers_table_search_tooltip": "搜索经理",
+ "edit_manager": "编辑经理", "edit_manager_name": "编辑经理姓名", "edit_manager_team": "编辑经理球队",
+ "manager_edited_names_table": "经理改名记录",
+ "caretaker_manager_tooltip": "代理主教练", "staff_capacity_tooltip": "职员容量",
+ "disable_manager_market_tooltip": "禁用经理市场",
+ # ================= 阵型 / 比赛 =================
+ "edit_formation": "编辑阵型", "formation_starting_xi_group": "首发十一人",
+ "freeze_lineup_tooltip": "冻结阵容", "freeze_match_time_tooltip": "冻结比赛时间",
+ "reset_match_time": "重置比赛时间", "reset_match_time_tooltip": "重置比赛时间",
+ "end_current_half": "结束当前半场", "end_current_half_tooltip": "立即结束当前半场",
+ "reschedule_fixture_tooltip": "重新安排赛程", "edit_fixture": "编辑赛程",
+ "fixture_date_table": "赛程日期", "fixtures_table_container": "赛程表",
+ "override_fixture_time_tooltip": "覆盖比赛时间",
+ "override_fixture_time_hour_tooltip": "覆盖小时", "override_fixture_time_minute_tooltip": "覆盖分钟",
+ "override_fixture_timee_group": "覆盖比赛时间",
+ "match_fixing_tooltip": "比赛操纵", "match_fixing_table": "比赛操纵表",
+ "match_fixing_priority_tooltip": "比赛操纵优先级",
+ "unlimited_subs": "无限替补", "user_unlimited_subs": "玩家无限替补",
+ "cpu_unlimited_subs": "电脑无限替补", "cpu_disabled_subs": "电脑禁用替补",
+ "cpu_home_unlimited_subs": "主队无限替补", "cpu_home_disabled_subs": "主队禁用替补",
+ "cpu_away_unlimited_subs": "客队无限替补", "cpu_away_disabled_subs": "客队禁用替补",
+ "default_teamsheets": "默认阵容", "default_mentalities": "默认心态",
+ # ================= 生涯 =================
+ "career": "生涯", "youth": "青训", "senior": "一线队", "coaches": "教练", "scouts": "球探",
+ "staff": "职员", "generate_ya_report_tooltip": "生成青训报告",
+ "allow_multiple_scouts_in_same_country_tooltip": "允许同一国家派驻多名球探",
+ "make_every_scout_perfect": "让所有球探完美", "max_players_per_report_tooltip": "每份报告球员上限",
+ "mission_no_cost_tooltip": "任务无消耗",
+ "pap_club_reputation_tooltip": "俱乐部声望", "pap_nt_reputation": "国家队声望",
+ "pap_nt_reputation_tooltip": "国家队声望",
+ "ban_end_date_table": "禁赛结束日期", "ban_end_date_tooltip": "禁赛结束日期",
+ "disable_neg_status_check_tooltip": "禁用负面状态检查",
+ "disable_unexpected_events_tooltip": "禁用意外事件",
+ "disable_dynamic_ovr_tooltip": "禁用动态总评",
+ "is_unsackable_tooltip": "不可解雇", "is_favourite_tooltip": "设为喜爱",
+ "is_disliked_tooltip": "设为厌恶", "is_transfer_listed": "挂牌转会", "is_loan_listed": "挂牌租借",
+ "vpro_bypass_objectives_tooltip": "跳过生涯目标", "vpro_contract_status": "生涯合同状态",
+ "vpro_contract_status_2": "生涯合同状态", "vpro_contract_status_3": "生涯合同状态",
+ # ================= 转会 =================
+ "transfers": "转会", "transfers_table_container": "转会列表",
+ "transfer_add_filter_hint": "添加筛选…", "transfer_ban_table": "转会禁令",
+ "transfer_ban_tooltip": "转会禁令", "transfer_data_table": "转会数据",
+ "transfer_history_base_filter_hint": "基础筛选…", "transfer_history_main_table": "转会历史",
+ "transfer_history_table_eraser_tooltip": "清除筛选",
+ "transfer_history_table_search_tooltip": "搜索转会记录",
+ "transfer_player_info_tooltip": "转会球员信息", "transfer_team_tooltip": "转会球队",
+ "transfer_player_best_att": "最佳进攻", "transfer_player_best_def": "最佳防守",
+ "transfer_player_best_gk": "最佳门将", "transfer_player_best_mid": "最佳中场",
+ "allow_transfer_loan_apporach_tooltip": "允许转会/租借接触",
+ "contract_status_picker_group": "合同状态", "contract_bonus_type": "合同奖金类型",
+ "contract_len_months": "合同长度（月）",
+ # ================= 统计 =================
+ "stats_table_container": "统计表", "standings_table_container": "积分榜",
+ "stat_apps": "出场", "stat_goals": "进球", "stat_assists": "助攻",
+ "stat_clean_sheets": "零封", "stat_goals_conceded": "失球", "stat_minutes": "出场时间",
+ "stat_motms": "全场最佳", "stat_ratings": "评分", "stat_reds": "红牌",
+ "stat_saves": "扑救", "stat_shots": "射门", "stat_yellows": "黄牌",
+ "tact_skill_id": "战术技能", "tact_skill_knowledge": "战术知识",
+ "short_passing": "短传", "direct_passing": "直传",
+ "fm_injuryname": "伤病名称", "fm_fullfit_d": "完全恢复（日）",
+ "fm_fullfit_m": "完全恢复（月）", "fm_fullfit_y": "完全恢复（年）",
+ # ================= 快捷键 / 设置 =================
+ "hotkeys_collapsing": "热键", "hotkey_name": "热键名称", "hotkey_description": "热键说明",
+ "hotkey_action_type": "动作类型", "edit_hotkey_popup": "编辑热键", "create_hotkey_popup": "创建热键",
+ "dll_inject_delay": "DLL 注入延迟", "font_size": "字号", "game_proc_name": "游戏进程名",
+ "first_run": "首次运行", "dont_show_messageboxes": "不再显示消息框",
+ "dont_pause_on_alttab": "Alt+Tab 时不暂停", "dont_pause_on_alttab_tooltip": "Alt+Tab 时不暂停游戏",
+ "auto_reload_images_tooltip": "自动重新加载图片",
+ "speedhack_group": "变速", "speedhack_menu": "菜单变速", "speedhack_speed_menu": "菜单变速",
+ "logger_main_table": "日志",
+ "legacy_filename_hash_list": "旧版文件名哈希表",
+ # ================= 数据库编辑器 =================
+ "db_editor_tab_details": "详情", "db_editor_tab_filter": "筛选", "db_editor_table_name": "表名",
+ "db_editor_ds": "数据大小", "db_editor_col_count": "列数", "db_editor_first_record": "首条记录",
+ "db_editor_max_records": "最大记录数", "db_editor_rec_size": "记录大小",
+ "db_editor_savegroups": "保存组", "db_editor_valid_records": "有效记录",
+ "db_editor_written_records": "已写入记录", "db_editor_canceled_records": "已取消记录",
+ "database_editor_table_info": "表信息", "parent_table_name": "父表名",
+ "filtering_players": "筛选球员", "filtering_managers": "筛选经理",
+ "filtering_teams": "筛选球队", "filtering_leagues": "筛选联赛",
+ "filtering_data": "筛选数据", "filtering_database": "筛选数据库",
+ "sorting_players": "排序球员", "sorting_managers": "排序经理", "sorting_teams": "排序球队",
+ "sorting_leagues": "排序联赛", "sorting_data": "排序数据",
+ # ================= 文件对话框 =================
+ "file_dialog_choose_dds": "选择 DDS 图片", "file_dialog_choose_dir": "选择目录",
+ "file_dialog_choose_lua": "选择 Lua 脚本", "file_dialog_choose_png": "选择 PNG 图片",
+ "file_dialog_import": "导入", "file_dialog_save_as": "另存为",
+ "file_browser_filter_input": "筛选…", "edit_row_filter_input": "筛选…",
+ "edit_option_filter_hint": "筛选…", "edit_option_filter_input": "筛选…",
+ # ================= 通知 =================
+ "notif_title_init_done": "初始化完成", "notif_text_init_done": "Live Editor 已就绪",
+ "notif_title_data_loaded": "数据已加载", "notif_text_data_loaded": "数据加载完成",
+ "notif_title_not_in_career_mode": "未进入生涯模式", "notif_text_not_in_career_mode": "该功能仅在生涯模式可用",
+ "notif_title_player_transferred": "转会完成", "notif_text_player_transferred": "球员已转会",
+ "notif_title_player_transfer_failed": "转会失败", "notif_text_player_transferred": "球员已转会",
+ "notif_title_player_loaned_out": "租借完成", "notif_text_player_loaned_out": "球员已租出",
+ "notif_title_player_loan_failed": "租借失败",
+ "notif_title_table_sorted": "已排序", "notif_text_table_sorted": "表格已排序",
+ "notif_title_db_table_full": "数据表已满", "notif_text_db_table_full": "数据表已达上限",
+ "notif_title_db_table_filtered": "已应用筛选", "notif_text_db_table_filtered": "数据表已按筛选显示",
+ "notif_title_filters_exported": "筛选已导出", "notif_text_filters_exported": "筛选列表已导出",
+ "notif_title_filters_export_failed": "筛选导出失败", "notif_text_filters_export_failed": "无法导出筛选列表",
+ "notif_title_filters_imported": "筛选已导入", "notif_text_filters_imported": "筛选列表已导入",
+ "notif_title_filters_import_failed": "筛选导入失败", "notif_text_filters_import_failed": "无法导入筛选列表",
+ "notif_title_gen_ya_report_success": "青训报告已生成", "notif_text_gen_ya_report_success": "青训报告生成成功",
+ "notif_title_gen_ya_report_fail": "青训报告失败", "notif_text_gen_ya_report_fail": "无法生成青训报告",
+ "notif_title_delete_player_ya": "删除青训球员", "notif_text_delete_player_ya": "青训球员已删除",
+ "notif_title_miniface_imported": "小头像已导入", "notif_text_miniface_imported": "小头像导入成功",
+ "notif_title_miniface_generated": "小头像已生成", "notif_text_miniface_generated": "小头像生成成功",
+ "notif_title_miniface_deleted": "小头像已删除", "notif_text_miniface_deleted": "小头像已移除",
+ "notif_title_miniface_not_generated": "未生成小头像", "notif_text_miniface_not_generated": "请先生成小头像",
+ "notif_title_miniface_import_failed_no_dir": "导入失败", "notif_text_miniface_import_failed_no_dir": "未设置小头像目录",
+ "notif_title_job_offer_created": "已创建职位邀请", "notif_text_job_offer_created": "职位邀请已创建",
+ "notif_title_job_offer_create_failed": "创建失败", "notif_text_job_offer_create_failed": "无法创建职位邀请",
+ "notif_title_suspension_deleted": "禁赛已删除", "notif_text_suspension_deleted": "球员禁赛记录已清除",
+ "notif_title_transfer_manager_success": "转会经理已设置", "notif_text_transfer_manager_success": "转会经理设置成功",
+ "notif_title_transfer_manager_failed": "转会经理失败", "notif_text_transfer_manager_failed": "无法设置转会经理",
+ "notif_title_undo_cpu_loans": "已撤销电脑租借", "notif_text_undo_cpu_loans": "电脑租借已撤销",
+ "notif_title_undo_cpu_transfers": "已撤销电脑转会", "notif_text_undo_cpu_transfers": "电脑转会已撤销",
+ "notif_title_unlock_playstyles_success": "比赛风格已解锁", "notif_text_unlock_playstyles_success": "全部比赛风格槽位已解锁",
+ "notif_title_lua_load": "脚本已加载", "notif_text_lua_load": "Lua 脚本加载成功",
+ "notif_title_lua_save": "脚本已保存", "notif_text_lua_save": "Lua 脚本保存成功",
+ # ================= 杂项 =================
+ "quick_filter": "快速筛选", "quick_filter_caretakers": "代理教练",
+ "quick_filter_free_agents": "自由球员", "quick_filter_generated_players": "生成的球员",
+ "quick_filter_is_retiring": "即将退役", "quick_filter_only_females": "仅女足",
+ "quick_filter_only_males": "仅男足", "quick_action": "快捷操作",
+ "clear_persistent_docking_ref": "重置停靠布局",
+ "custom_team_names": "自定义球队名", "always_best_sm": "总是最佳 SM",
+ "always_best_wf": "总是最佳 WF", "constant_pressure": "持续施压",
+ "colorize": "上色", "view_as_text": "以文本查看",
+}
+
+# 同步上一轮已部署词表中的补充译文
+T.update({
+    "alt_boolean": "布尔值",
+    "alt_boolean_0": "否",
+    "alt_boolean_1": "是",
+    "btn_name": "按钮名称",
+    "change_name": "更改名称",
+    "cm_default_mentalities": "默认心态",
+    "column_major": "列优先",
+    "combo_type": "类型",
+    "content_container": "内容",
+    "date_tooltip": "日期",
+    "db_editor_canceled_records_tooltip": "被取消写入的记录数",
+    "db_editor_col_count_tooltip": "表的列数",
+    "db_editor_first_record_tooltip": "当前显示的首条记录",
+    "db_editor_max_records_tooltip": "表可容纳的最大记录数",
+    "db_editor_rec_size_tooltip": "单条记录的字节数",
+    "db_editor_savegroups_tooltip": "保存组的数量",
+    "db_editor_valid_records_tooltip": "有效记录数",
+    "db_editor_written_records_tooltip": "已写入的记录数",
+    "db_table_filter_add_tooltip": "添加筛选条件",
+    "db_table_filter_clear_tooltip": "清除筛选条件",
+    "dob_tooltip": "出生日期",
+    "edit_field": "编辑字段",
+    "edit_option": "编辑选项",
+    "edit_player_name_custom_name_tooltip": "使用自定义姓名覆盖游戏内姓名",
+    "edit_player_name_nameids_tooltip": "修改姓名关联的 ID",
+    "edit_row": "编辑行",
+    "edit_team_name_abbr10_lbl": "球队缩写（10 字）",
+    "edit_team_name_abbr10_tooltip": "游戏内显示的 10 字缩写",
+    "edit_team_name_abbr15_lbl": "球队缩写（15 字）",
+    "edit_team_name_abbr15_tooltip": "游戏内显示的 15 字缩写",
+    "edit_team_name_abbr3_lbl": "球队缩写（3 字）",
+    "edit_team_name_abbr3_tooltip": "游戏内显示的 3 字缩写",
+    "edit_team_name_full_name_lbl": "球队全名",
+    "edit_team_name_full_name_tooltip": "球队完整名称",
+    "edt_abbr10": "10 字缩写",
+    "edt_abbr15": "15 字缩写",
+    "edt_abbr3": "3 字缩写",
+    "edt_doubleput": "双精度",
+    "edt_fltput": "浮点数",
+    "edt_fullname": "全名",
+    "edt_gk_primary_max_attr_boost": "门将主属性提升上限",
+    "edt_gk_primary_min_attr_boost": "门将主属性提升下限",
+    "edt_gk_secondary_max_attr_boost": "门将副属性提升上限",
+    "edt_gk_secondary_min_attr_boost": "门将副属性提升下限",
+    "edt_intput": "整数",
+    "edt_new_preset_file_name": "新预设文件名",
+    "edt_playstyles_count_additional_max": "附加风格数上限",
+    "edt_playstyles_count_additional_min": "附加风格数下限",
+    "edt_playstyles_count_essential_max": "核心风格数上限",
+    "edt_playstyles_count_essential_min": "核心风格数下限",
+    "edt_potential_max": "潜力上限",
+    "edt_potential_min": "潜力下限",
+    "edt_primary_max_attr_boost": "主属性提升上限",
+    "edt_primary_min_attr_boost": "主属性提升下限",
+    "edt_secondary_max_attr_boost": "副属性提升上限",
+    "edt_secondary_min_attr_boost": "副属性提升下限",
+    "edt_strput": "文本",
+    "flag_tooltip": "国旗",
+    "icontrait2_names": "图标特性二",
+    "insert_row": "插入行",
+    "league_tooltip": "联赛",
+    "m_info": "更多信息",
+    "notif_text_int_job_offer_created": "职位邀请已创建",
+    "nt_jerseynumber": "球衣号码",
+    "p_info": "球员信息",
+    "reset_order": "重置顺序",
+    "s_advanced_list_name": "高级筛选名称",
+    "s_filtered": "已筛选",
+    "s_sorted": "已排序",
+})
+
+# 常用菜单与操作
+T.update({
+    "settings": "设置", "players": "球员", "teams": "球队", "managers": "经理",
+    "data": "数据", "filter": "筛选", "search": "搜索", "apply": "应用",
+    "save": "保存", "cancel": "取消", "close": "关闭", "reset": "重置",
+    "delete": "删除", "edit": "编辑", "add": "添加", "remove": "移除",
+    "import": "导入", "export": "导出", "load": "加载", "refresh": "刷新",
+    "generate": "生成", "preview": "预览", "confirm": "确认",
+    "yes": "是", "no": "否", "ok": "确定", "match": "比赛",
+    "misc": "杂项", "other": "其他", "others": "其他",
+    "match_fixing_priority": "赛果设置优先级",
+})
+
+# LE 按字段名生成 table_header_<字段>，字段编辑器也使用部分原始键名。
+FIELD_LABELS = {
+    # 球员与球队列表
+    "id": "ID", "name": "名称", "playerid": "球员 ID",
+    "firstname": "名", "surname": "姓", "lastname": "姓",
+    "commonname": "常用名", "playerjerseyname": "球衣姓名",
+    "firstnameid": "名 ID", "lastnameid": "姓 ID", "commonnameid": "常用名 ID",
+    "playerjerseynameid": "球衣姓名 ID", "jerseynumber": "球衣号码",
+    "gender": "性别", "nationality": "国籍", "nationid": "国家或地区 ID",
+    "age": "年龄", "birthdate": "出生日期", "height": "身高", "weight": "体重",
+    "teamid": "球队 ID", "teamname": "球队名", "leagueid": "联赛 ID",
+    "leaguename": "联赛名", "managerid": "经理 ID",
+    "position": "位置", "preferredposition": "惯用位置",
+    "overallrating": "总评", "potential": "潜力", "preferredfoot": "惯用脚",
+    "weakfootabilitytypecode": "逆足能力", "skillmoves": "花式动作",
+    "internationalrep": "国际声望", "isretiring": "即将退役",
+    "contractvaliduntil": "合同到期", "playerjointeamdate": "入队日期",
+    "playerrole": "队内角色", "wage": "周薪", "salary": "薪资", "value": "身价",
+    "isloantobuy": "租借附带买断", "futureoptiontobuy": "买断选项",
+    "teamidloanedfrom": "外租母队 ID", "loandateend": "租借到期日期",
+    "is_suspended": "停赛", "fm_fitness": "体能", "fm_isinjured": "伤病状态",
+    "fm_injuryname": "伤病名称", "match_form": "比赛状态",
+    # 技术与身体属性
+    "acceleration": "加速", "sprintspeed": "冲刺速度", "agility": "敏捷",
+    "balance": "平衡", "jumping": "弹跳", "stamina": "耐力", "strength": "力量",
+    "reactions": "反应", "composure": "沉着", "aggression": "侵略性",
+    "vision": "视野", "positioning": "进攻跑位", "interceptions": "拦截",
+    "defensiveawareness": "防守意识", "standingtackle": "站立抢断",
+    "slidingtackle": "滑铲", "ballcontrol": "控球", "dribbling": "盘带",
+    "curve": "弧线", "crossing": "传中", "shortpassing": "短传",
+    "longpassing": "长传", "finishing": "终结", "headingaccuracy": "头球精度",
+    "shotpower": "射门力量", "longshots": "远射", "volleys": "凌空射门",
+    "penalties": "点球", "freekickaccuracy": "任意球精度",
+    "gkdiving": "门将扑救", "gkhandling": "门将接球", "gkkicking": "门将开球",
+    "gkpositioning": "门将站位", "gkreflexes": "门将反应",
+    "gksavetype": "门将扑救方式", "gkkickstyle": "门将开球动作",
+    "trait1": "特性组 1", "trait2": "特性组 2",
+    "icontrait1": "标志性特性组 1", "icontrait2": "标志性特性组 2",
+    # 外观与装备
+    "headassetid": "头部模型 ID", "headclasscode": "头部模型类别",
+    "headtypecode": "头部模型类型", "headvariation": "头部模型变体",
+    "hashighqualityhead": "使用高精度头模", "bodytypecode": "体型",
+    "muscularitycode": "肌肉类型", "skintonecode": "肤色", "skintypecode": "皮肤类型",
+    "skincomplexion": "皮肤纹理", "skinmakeup": "面部妆容",
+    "eyebrowcode": "眉形", "eyecolorcode": "瞳色", "eyedetail": "眼部细节",
+    "lipcolor": "唇色", "hairtypecode": "头发类型", "hairstylecode": "发型",
+    "haircolorcode": "发色", "facialhairtypecode": "胡须类型",
+    "facialhaircolorcode": "胡须颜色", "sideburnscode": "鬓角样式",
+    "jerseystylecode": "球衣样式", "jerseysleevelengthcode": "球衣袖长",
+    "jerseyfit": "球衣版型", "shortstyle": "球裤样式", "undershortstyle": "打底裤样式",
+    "sockstylecode": "球袜样式", "socklengthcode": "球袜长度",
+    "shoetypecode": "球鞋类型", "shoedesigncode": "球鞋款式",
+    "shoecolorcode1": "球鞋主色", "shoecolorcode2": "球鞋辅色",
+    "gkglovetypecode": "门将手套类型", "runstylecode": "跑姿",
+    "tattoofront": "躯干正面纹身", "tattooback": "背部纹身", "tattoohead": "头部纹身",
+    "tattooleftarm": "左臂纹身", "tattoorightarm": "右臂纹身",
+    "tattooleftleg": "左腿纹身", "tattoorightleg": "右腿纹身",
+    # 俱乐部与比赛
+    "league": "联赛", "attackrating": "进攻评分", "midfieldrating": "中场评分",
+    "defenserating": "防守评分", "clubworth": "俱乐部估值", "transferbudget": "转会预算",
+    "players_worth": "阵容总身价", "XI_players_worth": "首发阵容身价",
+    "stadiumid": "球场 ID", "stadiumname": "球场名", "cityid": "城市 ID",
+    "foundationyear": "成立年份", "trainingstadium": "训练球场",
+    "rivalteam": "宿敌球队", "internationalprestige": "国际声望",
+    "youthdevelopment": "青训水平", "matchdayoverallrating": "比赛日总评",
+    "matchdayattackrating": "比赛日进攻评分", "matchdaymidfieldrating": "比赛日中场评分",
+    "matchdaydefenserating": "比赛日防守评分", "defensivedepth": "防线深度",
+    "defensivewidth": "防线宽度", "offensivestyle": "进攻风格",
+    "captainid": "队长 ID", "penaltytakerid": "点球主罚人 ID",
+    "freekicktakerid": "任意球主罚人 ID", "longkicktakerid": "远距离任意球主罚人 ID",
+    "leftcornerkicktakerid": "左侧角球主罚人 ID", "rightcornerkicktakerid": "右侧角球主罚人 ID",
+    "leftfreekicktakerid": "左侧任意球主罚人 ID", "rightfreekicktakerid": "右侧任意球主罚人 ID",
+    "leaguetitles": "联赛冠军次数", "uefa_cl_wins": "欧冠冠军次数",
+    "uefa_el_wins": "欧联冠军次数", "uefa_uecl_wins": "欧协联冠军次数",
+    "home_team_score": "主队进球", "away_team_score": "客队进球",
+}
+
+for index in range(1, 8):
+    FIELD_LABELS[f"preferredposition{index}"] = f"惯用位置 {index}"
+for index in range(1, 5):
+    FIELD_LABELS[f"accessorycode{index}"] = f"配饰 {index}"
+    FIELD_LABELS[f"accessorycode_{index}"] = f"配饰 {index}"
+    FIELD_LABELS[f"accessorycolourcode{index}"] = f"配饰 {index} 颜色"
+
+# 27.2.0 表格中使用的运行时字段名。
+FIELD_LABELS.update({
+    "club_teamid": "俱乐部 ID", "national_teamid": "国家队 ID",
+    "club_jerseynumber": "俱乐部球衣号码",
+    "playername": "球员姓名", "playerteam": "所属球队", "playerleague": "所属联赛",
+    "managername": "经理姓名", "teamleague": "球队联赛",
+    "releaseclause": "解约金", "squad_size": "阵容人数",
+    "XI_u18": "首发未满 18 岁人数", "XI_u21": "首发未满 21 岁人数",
+    "XI_avg_age": "首发平均年龄", "XI_avg_height": "首发平均身高",
+    "XI_avg_weight": "首发平均体重", "u18": "未满 18 岁人数",
+    "u21": "未满 21 岁人数", "avg_age": "平均年龄", "avg_height": "平均身高",
+    "avg_weight": "平均体重", "out_transfers": "转出人数",
+    "transfer_income": "转会收入", "transfer_expenditure": "转会支出",
+    "transfer_balance": "转会收支差额", "artificialkey": "内部记录键",
+    "playstyles1": "比赛风格组 1",
+    "playstyles1_plus": "强化比赛风格组 1", "playstyles2": "比赛风格组 2",
+    "playstyles2_plus": "强化比赛风格组 2", "offensivewidth": "进攻宽度",
+    "teamstadiumcapacity": "主场容量", "stadium": "球场",
+    "teamnameloanedfrom": "租借来源球队", "is_loan": "租借",
+    "from_team": "原球队", "to_team": "新球队", "transfer": "转会",
+    "transfer_status": "转会状态", "score": "比分",
+    "fixture_date": "比赛日期", "fixture_time": "开球时间", "competition": "赛事",
+    "standing_position": "名次", "standing_team": "球队",
+    "standing_games_played": "场次", "standing_games_won": "胜",
+    "standing_games_drawn": "平", "standing_games_lost": "负",
+    "standing_goals_for": "进球", "standing_goals_against": "失球",
+    "standing_goals_diff": "净胜球", "standing_points": "积分",
+    "staff_capacity": "职员名额", "is_favourite": "偏爱", "is_disliked": "厌恶",
+    "role": "角色", "formation": "阵型", "nat": "国籍", "ovr": "总评",
+    "pos": "位置", "foot": "惯用脚", "rat": "评分",
+    "sourceformationid": "原阵型 ID", "formationfullnameid": "阵型全名 ID",
+    "formationaudioid": "阵型语音 ID", "pitch_pos_id": "场上位置 ID",
+    "offsetx": "横向偏移", "offsety": "纵向偏移",
+    "col_count": "列数", "rec_size": "记录大小", "max_records": "记录上限",
+    "written_records": "已写入记录", "canceled_records": "已取消记录",
+    "valid_records": "有效记录", "row_num": "行号", "count": "数量",
+    "goals_scored": "进球数", "appearances": "出场次数",
+    "clean_sheets": "零封场次", "morale": "士气",
+})
+for index in range(11):
+    FIELD_LABELS[f"position{index}"] = f"位置 {index + 1}"
+    FIELD_LABELS[f"offset{index}x"] = f"位置 {index + 1} 横向偏移"
+    FIELD_LABELS[f"offset{index}y"] = f"位置 {index + 1} 纵向偏移"
+
+for field, label in FIELD_LABELS.items():
+    T.setdefault(field, label)
+    T[f"table_header_{field}"] = label
+
+# 球员、球队、比赛和数据库编辑窗口中的标签。
+T.update({
+    "overview": "概览", "appearance": "外观", "accessories": "配饰",
+    "playstyles": "比赛风格", "playstyles_plus": "强化比赛风格",
+    "traits": "特性", "remove_changes": "撤销更改",
+    "delete_suspension": "解除停赛", "create_clone": "克隆球员",
+    "save_player_popup": "保存球员", "save_team_popup": "保存球队",
+    "save_manager_popup": "保存经理", "save_formation_popup": "保存阵型",
+    "overview_bio_ovr_pot": "总评和潜力", "overview_player_wage": "周薪",
+    "overview_bio_total_attr": "属性总和", "overview_bio_dob": "出生日期",
+    "overview_bio_real_face": "真实面容", "overview_bio_positions": "场上位置",
+    "overview_bio_foot": "惯用脚", "overview_bio_accelerate": "加速类型",
+    "overview_bio_height": "身高", "overview_bio_weight": "体重",
+    "overview_bio_starrating": "星级", "p_attr": "属性", "p_tr_stat": "转会状态",
+    "p_con": "合同", "p_app": "外观", "p_acc": "配饰", "p_other": "其他",
+    "m_app": "外观", "m_acc": "配饰", "m_other": "其他",
+    "miniface": "球员头像", "delete_miniface": "删除头像", "generate_miniface": "生成头像",
+    "terminate_loan": "结束租借", "loan_player": "租借球员",
+    "release_player_from_team": "解约球员", "fire_manager": "解雇经理",
+    "transfer_manager": "转移经理", "transfer_player": "转会球员",
+    "finalize_transfer": "完成转会", "transfer_ban": "转会禁令",
+    "transfer_ban_player": "禁止球员转会", "transfer_ban_team": "禁止球队转会",
+    "is_team_banned": "球队处于转会禁令中", "is_league_banned": "联赛处于转会禁令中",
+    "days_to_unban": "距解禁天数", "ban_end_day": "解禁日",
+    "ban_end_month": "解禁月", "ban_end_year": "解禁年", "ban_end_date": "解禁日期",
+    "transfer_banned": "禁止转会", "match_fixing": "修改赛果",
+    "reschedule_fixture": "调整赛程", "standings": "积分榜", "team_players": "球队球员",
+    "create_job_offer": "创建职位邀请", "make_every_coach_perfect": "将所有教练设为满级",
+    "overview_whole_squad": "全队", "overview_starting_xi": "首发阵容",
+    "overview_squad_size": "阵容人数", "overview_players_worth": "阵容总身价",
+    "overview_u18": "未满 18 岁人数", "overview_u21": "未满 21 岁人数",
+    "overview_avg_age": "平均年龄", "overview_avg_height": "平均身高",
+    "overview_avg_weight": "平均体重", "invalid_league": "无效联赛",
+    "tactics": "战术", "loading_data": "正在加载数据…", "table_info": "表信息",
+    "db_cpy": "复制记录", "db_del": "删除记录", "del": "删除",
+    "create_player": "创建球员", "overwrite_data": "覆盖数据",
+    "bulk_create_players_popup": "批量创建球员", "is_visible": "可见",
+    "all_attributes": "所有属性", "heal_player": "治愈球员",
+    "injury_player": "让球员受伤", "restore_default": "恢复默认值",
+    "player_tier_config_popup": "球员档次设置", "season_statistics": "赛季统计",
+    "file_viewer_ds": "文件查看器", "delete_from_mods": "从模组中删除",
+    "view_as_hex": "以十六进制查看", "view_as_img": "以图像查看",
+    "cpy_full_file_path": "复制完整路径", "cpy_file_size": "复制文件大小",
+    "cpy_name_hash": "复制名称哈希", "cpy_chunk_id": "复制数据块 ID",
+    "table_header_": "编辑",
+    "table_header_\uf044": "编辑",
+})
+
+# 生涯、比赛和文件查看器中引用的标签。
+T.update({
+    "formations": "阵型", "positions": "位置", "roles": "角色",
+    "stadiums": "球场", "leagues": "联赛", "fixtures": "赛程", "filters": "筛选条件",
+    "player_role": "球员角色", "starskill": "花式动作星级", "starskill_alt": "花式动作星级",
+    "job_security_status": "执教职位稳定性", "tactical_knowledge_skill_id": "战术知识技能 ID",
+    "tactical_knowledge_skill_level": "战术知识等级", "positions_sel_bias": "位置选择倾向",
+    "boolean_0": "否", "boolean_1": "是", "yes_no": "是／否", "weather": "天气",
+    "form": "比赛状态", "form_bad": "很差", "form_poor": "较差",
+    "form_okay": "一般", "form_good": "良好", "form_excellent": "极佳",
+    "morale_very_unhappy": "非常不满", "morale_unhappy": "不满",
+    "morale_content": "满意", "morale_happy": "开心",
+    "morale_very_happy": "非常开心", "morale_complacent": "自满",
+    "injury_duration": "伤停时长", "injuryname": "伤病名称",
+    "hidden_traits": "隐藏特性", "overview_bio_sm_wf": "花式动作／逆足",
+    "forward_runs": "向前跑位", "drop_back": "回撤防守",
+    "pressure_on_heavy_touch": "对方停球失误后施压",
+    "press_after_possession_loss": "丢球后反抢", "buildupplay": "组织进攻",
+    "balanced": "平衡", "counter": "反击", "short_pass": "短传",
+    "chancecreation": "创造机会", "possession": "控球", "defensivestyle": "防守风格",
+    "percentage": "百分比", "month": "月", "day": "日", "hour": "小时", "minute": "分钟",
+    "rng_team": "随机球队", "unknown": "未知", "invalid": "无效",
+    "delete_player_popup": "删除球员", "delete_row_popup": "删除记录",
+    "fattribute_min": "属性最小值", "fattribute_max": "属性最大值",
+    "import_player_from_preset_popup": "从预设导入球员",
+    "combo_endianness": "字节序", "file_path_input": "文件路径",
+    "team_color_1": "球队主色", "team_color_2": "球队辅色", "team_color_3": "球队第三色",
+    "player_contract": "球员合同", "player_career": "球员生涯",
+})
+for level in range(1, 6):
+    T[f"star_{level}"] = f"{level} 星"
+
+for field, label in {
+    "hometeamid": "主队 ID", "awayteamid": "客队 ID", "homescore": "主队比分",
+    "awayscore": "客队比分", "scored": "进球", "conceded": "失球",
+    "starrating": "星级", "managerjointeamdate": "经理加盟日期",
+    "islicensed": "已授权", "outfitid": "服装 ID", "personalityid": "性格 ID",
+    "seasonaloutfitid": "赛季服装 ID", "shortname": "简称",
+    "rangehigh": "取值上限", "rangelow": "取值下限", "fkparenttable": "外键关联表",
+    "teamkits": "球队球衣", "competitionkits": "赛事球衣", "teamkittypetechid": "球衣类型 ID",
+    "editedplayernames:firstname": "名", "editedplayernames:surname": "姓",
+    "editedplayernames:playerjerseyname": "球衣姓名", "editedplayernames:commonname": "常用名",
+}.items():
+    T.setdefault(field, label)
+    T.setdefault(f"table_header_{field}", label)
+
+# 球队、工作人员、球场和球衣编辑器使用的字段。
+for field, label in {
+    "stat_apps": "出场次数", "stat_minutes": "出场分钟", "stat_goals": "进球",
+    "stat_shots": "射门", "stat_assists": "助攻", "stat_motms": "全场最佳次数",
+    "stat_ratings": "比赛评分", "stat_yellows": "黄牌", "stat_reds": "红牌",
+    "stat_saves": "扑救", "stat_goals_conceded": "失球", "stat_clean_sheets": "零封",
+    "isregen": "再生球员", "has_miniface": "有球员头像", "trait1_count": "特性组 1 数量",
+    "trait2_count": "特性组 2 数量", "icontrait1_count": "标志性特性组 1 数量",
+    "icontrait2_count": "标志性特性组 2 数量", "trait1_names": "特性组 1 名称",
+    "trait2_names": "特性组 2 名称", "icontrait1_names": "标志性特性组 1 名称",
+    "attack": "进攻", "defending": "防守", "skill": "技术", "power": "力量",
+    "movement": "移动", "mentality": "精神属性", "goalkeeper": "门将",
+    "year": "年份", "domesticcups": "国内杯赛冠军次数",
+    "domesticprestige": "国内声望", "uefa_consecutive_wins": "欧足联赛事连冠次数",
+    "profitability": "盈利能力", "popularity": "人气", "numtransfersin": "引援人数",
+    "opponentstrongthreshold": "强敌判定阈值", "opponentweakthreshold": "弱队判定阈值",
+    "favoriteteamsheetid": "偏好阵容表 ID", "assetid": "资源 ID",
+    "ballid": "比赛用球 ID", "countryid": "国家或地区 ID",
+    "longitude": "经度", "latitude": "纬度", "utcoffset": "UTC 时差",
+    "nationalities": "球员国籍", "XI_nationalities": "首发球员国籍",
+    "freeze_lineup": "锁定首发阵容", "stadium_id": "球场 ID",
+    "stadium_name": "球场名称", "stadiumcustomname": "自定义球场名称",
+    "stadiumassignments": "球场分配", "stadiummowpattern_code": "草坪修剪图案",
+    "pitchwear": "草坪磨损", "playsurfacetype": "场地表面类型", "pitchcolor": "场地颜色",
+    "pitchlinecolor": "场地划线颜色", "stadiumgoalnetstyle": "球网样式",
+    "stadiumgoalnetpattern": "球网图案", "crowdregion": "观众地区",
+    "crowdskintonecode": "观众肤色代码", "hasstandingcrowd": "启用站立观众",
+    "haslargeflag": "启用大型旗帜", "hasvikingclap": "启用维京战吼",
+    "hastifo": "启用看台展示", "iscompetitioncrowdcardsenabled": "启用看台拼图",
+    "iscompetitionpoleflagenabled": "启用赛事旗杆旗帜",
+    "iscompetitionscarfenabled": "启用赛事围巾", "isbannerenabled": "启用横幅",
+    "hassubstitutionboard": "启用换人指示牌", "skinnyflags": "窄幅旗帜",
+    "playersinboxfk": "任意球时禁区内人数", "playersinboxcross": "传中时禁区内人数",
+    "playersinboxcorner": "角球时禁区内人数",
+    "coach:id": "教练 ID", "coach:firstname": "教练名", "coach:lastname": "教练姓",
+    "coach:salary": "教练薪资", "coach:gk_skills": "门将训练能力",
+    "coach:def_skills": "防守训练能力", "coach:mid_skills": "中场训练能力",
+    "coach:att_skills": "进攻训练能力", "coach:tact_skill_id": "战术技能 ID",
+    "coach:tact_skill_knowledge": "战术知识", "s_scout:id": "球探 ID",
+    "s_scout:firstname": "球探名", "s_scout:lastname": "球探姓", "s_scout:nationality": "球探国籍",
+    "s_scout:experience": "球探经验", "s_scout:judgment": "球探判断力",
+    "y_scout:id": "青训球探 ID", "y_scout:firstname": "青训球探名",
+    "y_scout:lastname": "青训球探姓", "y_scout:nationality": "青训球探国籍",
+    "y_scout:experience": "青训球探经验", "y_scout:judgment": "青训球探判断力",
+    "y_scout:level": "青训球探等级",
+    "teamkitid": "球队球衣 ID", "jerseytype": "球衣类型", "dlc": "追加内容",
+    "captainarmband": "队长袖标", "chestbadge": "胸前徽章",
+    "renderingmaterialtype": "渲染材质类型", "numberfonttype": "号码字体",
+    "islocked": "已锁定", "isembargoed": "暂未启用",
+    "isinheritbasedetailmap": "继承基础细节贴图", "hasadvertisingkit": "球衣带广告",
+    "jerseyshapestyle": "球衣版型", "jerseyleftsleevebadge": "左袖徽章",
+    "jerseyrightsleevebadge": "右袖徽章", "jerseynamelayouttype": "球衣姓名排版",
+    "jerseynamefonttype": "球衣姓名字体", "jerseynameoutlinewidth": "姓名描边宽度",
+    "jerseybacknamefontcase": "背后姓名字母大小写", "jerseybacknameplacementcode": "背后姓名位置",
+    "jerseyfrontnumberplacementcode": "胸前号码位置", "jerseycollargeometrytype": "领口样式",
+    "jerseyrenderingdetailmaptype": "球衣细节贴图类型",
+    "jersey_name_color": "球衣姓名颜色", "jersey_name_outline_color": "姓名描边颜色",
+    "shortsrenderingdetailmaptype": "球裤细节贴图类型",
+    "shortsnumberplacementcode": "球裤号码位置", "shortsnumberfonttype": "球裤号码字体",
+    "cm_teamsheets": "生涯阵容表", "cm_mentalities": "生涯战术心态",
+}.items():
+    T.setdefault(field, label)
+    T.setdefault(f"table_header_{field}", label)
+
+for index, color in enumerate(("主色", "辅色", "第三色"), 1):
+    for field, label in (
+        (f"team_kit_color_{index}", f"球衣{color}"),
+        (f"jersey_number_color_{index}", f"球衣号码{color}"),
+        (f"shorts_number_color_{index}", f"球裤号码{color}"),
+    ):
+        T.setdefault(field, label)
+        T.setdefault(f"table_header_{field}", label)
+
+# MatchSettingsWeatherType in FC27.exe v27: Dry, Rain, Snow, Overcast, Mud.
+T.update({
+    "weather_0": "干燥", "weather_1": "下雨", "weather_2": "下雪",
+    "weather_3": "阴天", "weather_4": "泥泞",
+})
+
+# 从当前版本设置、杂项功能和文件编辑界面提取的标签。
+T.update({
+    "ui": "界面", "attr_colors": "能力值颜色", "hotkeys": "快捷键",
+    "directories": "目录", "launcher": "启动器", "advanced_launch_options": "高级启动选项",
+    "message_boxes": "消息框", "show_disclaimer_msg": "显示免责声明",
+    "close_after_injection": "注入后关闭启动器", "auto_inject": "自动注入",
+    "no_mods": "停用模组", "params": "启动参数", "dlls": "DLL 列表",
+    "keys_combination": "组合键", "log_level": "日志级别",
+    "log_try_find_legacy_file": "记录旧版文件查找", "log_load_legacy_file": "记录旧版文件加载",
+    "log_career_mode_fcei": "记录生涯模式 FCEI", "log_career_mode_text_bed_io": "记录生涯文本读写",
+    "log_localize": "记录本地化查找", "log_events": "记录事件",
+    "show_player_potential": "显示球员潜力", "auto_reload_images": "自动重新加载图像",
+    "units_format": "计量单位", "date_format": "日期格式",
+    "legacyfolder_export": "旧版文件夹导出目录", "legacyfile_export": "旧版文件导出目录",
+    "legacyfile_import": "旧版文件导入目录",
+    "about": "关于", "speedhack": "速度调整", "speedhack_speed_gameplay": "比赛速度",
+    "gameplay": "比赛玩法", "timer": "计时器", "match_time": "比赛时间",
+    "freeze_match_time": "冻结比赛时间", "user_team": "玩家球队",
+    "home_team": "主队", "away_team": "客队", "tired_players": "球员疲劳",
+    "hometeamunilimitedsubs": "主队无限换人", "awayteamunilimitedsubs": "客队无限换人",
+    "hometeamdisabledsubs": "主队禁止换人", "awayteamdisabledsubs": "客队禁止换人",
+    "hometeamtiredplayers": "主队疲劳球员", "awayteamtiredplayers": "客队疲劳球员",
+    "hometeamnevertiredplayers": "主队球员不疲劳", "awayteamnevertiredplayers": "客队球员不疲劳",
+    "home_goals_scored": "主队进球数", "away_goals_scored": "客队进球数",
+    "career_mode": "生涯模式", "match_setup": "比赛设置",
+    "override_fixture_h": "自定义开球小时", "override_fixture_m": "自定义开球分钟",
+    "global_transfer_network": "全球转会网络", "transfer_hub": "转会中心",
+    "allow_transfer_loan_apporach": "允许接洽转会或租借", "youth_academy": "青训营",
+    "generate_ya_report": "生成青训报告", "allow_multiple_scouts_in_same_country": "允许多名球探在同一国家工作",
+    "min_age_for_promotion": "升入一队的最低年龄", "unlock_all_playstyles_slots": "解锁所有比赛风格槽位",
+    "funds": "资金", "attribute_points": "属性点数", "pap_club_reputation": "俱乐部声望",
+    "vpro_bypass_objectives": "跳过球员生涯目标", "file_browser": "文件浏览器",
+    "file_browser_ds": "文件浏览器", "tree_container": "目录树", "files_container": "文件列表",
+    "directory": "目录", "bytes": "字节", "lua_engine": "Lua 脚本引擎", "save_as": "另存为",
+})
+
+# 开发记录中的表头拼写。
+T["table_header_playeid"] = FIELD_LABELS["playerid"]
+
+
+T.update({
+    'features': '功能',
+    'view': '视图',
+    'options': '选项',
+    'help': '帮助',
+    'logger': '日志',
+    'open_folder': '打开文件夹',
+    'clear': '清空',
+    'auto_scroll': '自动滚动',
+    'table_header_club': '俱乐部',
+    'table_header_total_attr': '属性总和',
+    'table_header_market_value': '身价',
+    'table_header_otherpositions': '其他位置',
+    'table_header_roles': '角色',
+    'table_header_time': '时间',
+    'table_header_level': '级别',
+    'table_header_text': '内容',
+    'pos_0_abbr': '门将',
+    'pos_1_abbr': '清道夫',
+    'pos_2_abbr': '右翼卫',
+    'pos_3_abbr': '右后卫',
+    'pos_4_abbr': '右中卫',
+    'pos_5_abbr': '中卫',
+    'pos_6_abbr': '左中卫',
+    'pos_7_abbr': '左后卫',
+    'pos_8_abbr': '左翼卫',
+    'pos_9_abbr': '右后腰',
+    'pos_10_abbr': '后腰',
+    'pos_11_abbr': '左后腰',
+    'pos_12_abbr': '右中场',
+    'pos_13_abbr': '右中前卫',
+    'pos_14_abbr': '中前卫',
+    'pos_15_abbr': '左中前卫',
+    'pos_16_abbr': '左中场',
+    'pos_17_abbr': '右前腰',
+    'pos_18_abbr': '前腰',
+    'pos_19_abbr': '左前腰',
+    'pos_20_abbr': '右影锋',
+    'pos_21_abbr': '影锋',
+    'pos_22_abbr': '左影锋',
+    'pos_23_abbr': '右边锋',
+    'pos_24_abbr': '右前锋',
+    'pos_25_abbr': '中锋',
+    'pos_26_abbr': '左前锋',
+    'pos_27_abbr': '左边锋',
+})
+
+
+# Field editors generate <field>_abbr independently of table_header_<field>.
+# Include attributes, equipment, team data, and staff from the same field labels.
+T.update({
+    "attributes": "能力值", "Attributes": "能力值", "attribute": "能力值",
+    "p_attr": "能力值", "team": "球队", "manager": "经理",
+    "kits": "球衣", "coaches": "教练", "traits": "特性",
+    "hidden_traits": "隐藏特性", "playstyles": "比赛风格", "playstyles_plus": "比赛风格+",
+    "years_old_abbr": "岁", "prev_el_champ": "上届欧联杯冠军",
+    "birth_day": "出生日期（日）", "birth_month": "出生月份", "birth_year": "出生年份",
+    "join_team_day": "入队日期（日）", "join_team_month": "入队月份", "join_team_year": "入队年份",
+    "done": "完成", "loading_legacy_files": "正在加载旧版文件…",
+    "season_stats_no_data": "暂无赛季统计", "tats_no_data": "暂无统计",
+    "override_crowd_attendance": "自定义观众人数",
+    "formation_0": "未指定阵型", "default": "默认", "none": "无", "auto": "自动",
+    "traditional": "传统型", "acrobatic": "特技型", "outfield": "非门将球员",
+    "sm": "花式动作", "wf": "逆足",
+    "teamtrait1": "球队特性", "trait1vstrong": "对强队时的特性",
+    "trait1vequal": "对实力相近球队时的特性", "trait1vweak": "对弱队时的特性",
+    "trait1vstrong_count": "对强队时的特性数量", "trait1vequal_count": "对实力相近球队时的特性数量",
+    "trait1vweak_count": "对弱队时的特性数量", "trait1vstrong_names": "对强队时的特性",
+    "trait1vequal_names": "对实力相近球队时的特性", "trait1vweak_names": "对弱队时的特性",
+})
+
+for field, label in {
+    "facepsdlayer0": "面部图层 1", "facepsdlayer1": "面部图层 2",
+    "animfreekickstartposcode": "任意球起始站姿", "animpenaltiesstartposcode": "点球起始站姿",
+    "finishingcode1": "射门动作 1", "finishingcode2": "射门动作 2",
+    "skinsurfacepack": "皮肤材质包", "hasseasonaljersey": "使用赛季球衣",
+    "faceposerpreset": "面部表情预设", "avatarpomid": "头像 POM ID",
+    "runningcode1": "跑动动作 1", "runningcode2": "跑动动作 2",
+    "modifier": "修正值", "personality": "性格", "skillmoveslikelihood": "花式动作倾向",
+    "smallsidedshoetypecode": "小场比赛球鞋类型", "emotion": "情绪",
+    "origin": "来源", "revision": "修订版本", "male_cards": "男足球员卡",
+    "female_cards": "女足球员卡", "potential_min": "潜力下限", "potential_max": "潜力上限",
+    "prim_min_attr_boost": "主能力值提升下限", "prim_max_attr_boost": "主能力值提升上限",
+    "gk_prim_min_attr_boost": "门将主能力值提升下限", "gk_prim_max_attr_boost": "门将主能力值提升上限",
+    "sec_min_attr_boost": "次要能力值提升下限", "sec_max_attr_boost": "次要能力值提升上限",
+    "gk_sec_min_attr_boost": "门将次要能力值提升下限", "gk_sec_max_attr_boost": "门将次要能力值提升上限",
+    "prev_el_champ": "上届欧联杯冠军",
+    **{f"role{i}": f"战术角色 {i}" for i in range(1, 6)},
+}.items():
+    T.setdefault(field, label)
+    T.setdefault(f"table_header_{field}", label)
+
+for key, label in tuple(T.items()):
+    if key.startswith("table_header_"):
+        field = key.removeprefix("table_header_")
+        if field and all(ch.isascii() and (ch.isalnum() or ch in "_:") for ch in field):
+            T.setdefault(f"{field}_abbr", label)
+
+for field in (
+    "team_color_1", "team_color_2", "team_color_3", "trait1vstrong", "trait1vequal",
+    "trait1vweak", "trait1vstrong_names", "trait1vequal_names", "trait1vweak_names",
+):
+    T.setdefault(f"{field}_abbr", T[field])
+
+
+# FC 27 gameplay feature enumeration and LE trait1_{n}/trait2_{n} keys.
+# The editor also uses the same keys for enhanced styles, adding "+" itself.
+PLAYER_TRAIT_NAMES = (
+    (
+        "搓射", "挑射", "强力射门", "定位球专家", "精准头球", "杂技射门",
+        "低射", "颠覆者", "精准直塞", "快速传球", "长传专家", "短传配合",
+        "弧线传中", "创意传球", "贴身防守", "封堵", "拦截", "预判",
+        "滑铲", "空中堡垒", "技术盘带", "高速盘带", "第一脚触球",
+        "花式高手", "抗压控球", "快速启动", "不知疲倦", "大力界外球",
+        "强硬对抗", "强力护球", "远距离手抛球", "脚下扑救",
+    ),
+    (
+        "拦截传中", "主动出击", "远距离扑救", "挡球化解",
+        "擅长远射（电脑控制）", "提前传中（电脑控制）",
+        "耐伤", "团队球员", "忠于俱乐部", "容易受伤", "领导力", "超级替补",
+    ),
+)
+for group, labels in enumerate(PLAYER_TRAIT_NAMES, 1):
+    for bit, label in enumerate(labels):
+        T[f"trait{group}_{bit}"] = label
+
+# FC27.exe registers 27 team traits starting with IMPATIENT_BOARD as index 0.
+TEAM_TRAITS = (
+    ("缺乏耐心的董事会", "董事会对未达到预期的主教练更缺乏耐心。"),
+    ("忠诚的董事会", "董事会更愿意继续支持现任主教练。"),
+    ("阵容轮换", "球队倾向于轮换出场阵容。"),
+    ("固定阵容", "球队倾向于保持首发阵容稳定。"),
+    ("边锋换位", "两侧边锋倾向于交换位置。"),
+    ("中卫拉开", "中后卫倾向于拉开站位。"),
+    ("守住领先", "球队领先时倾向于保护比分。"),
+    ("保持压迫", "球队倾向于持续施加压迫。"),
+    ("主场加强进攻", "球队在主场倾向于加强进攻。"),
+    ("短传渗透", "球队倾向于连续短传推进。"),
+    ("控球", "球队倾向于维持球权。"),
+    ("反击", "球队倾向于在夺回球权后快速反击。"),
+    ("直接进攻", "球队倾向于直接向前推进。"),
+    ("通用进攻", "使用通用进攻行为。"),
+    ("传中", "球队倾向于从边路传中。"),
+    ("盘带", "球队倾向于通过盘带推进。"),
+    ("贴身干扰", "防守时倾向于跟随并干扰持球队员。"),
+    ("双人包夹", "防守时倾向于用两名球员围住持球人。"),
+    ("意式防守", "采用意式防守倾向。"),
+    ("不施压", "球队倾向于维持防守阵型并减少主动施压。"),
+    ("保守身体防守", "身体防守时的保守倾向。"),
+    ("积极身体防守", "身体防守时的积极倾向。"),
+    ("通用防守", "使用通用防守行为。"),
+    ("小场比赛：身体", "小场比赛中的身体对抗倾向。"),
+    ("小场比赛：技术", "小场比赛中的技术倾向。"),
+    ("小场比赛：战术", "小场比赛中的战术倾向。"),
+    ("俱乐部模式球队", "标记俱乐部模式使用的球队。"),
+)
+for bit, (name, hint) in enumerate(TEAM_TRAITS):
+    T[f"teamtrait1_{bit}"] = name
+    T[f"teamtrait1_{bit}_tooltip"] = hint
+
+# Position-specific FC 27 role IDs as recorded in the reference catalog.
+# A value offset by 100 is the same position and role at the ++ level.
+ROLE_NAMES = (
+    "门将", "清道夫门将", "右后卫·边后卫", "右后卫·内收边后卫", "右后卫·翼卫",
+    "右后卫·进攻翼卫", "左后卫·边后卫", "左后卫·内收边后卫", "左后卫·翼卫",
+    "左后卫·进攻翼卫", "中卫·防守中卫", "中卫·上抢中卫", "中卫·出球中卫",
+    "后腰·拖后防守", "后腰·回撤中卫", "后腰·拖后组织", "后腰·边路后腰",
+    "中前卫·全能中场", "中前卫·拖后防守", "中前卫·拖后组织",
+    "中前卫·组织核心", "中前卫·边路型中场",
+    "右中场·边锋", "右中场·边前卫", "右中场·边路组织", "右中场·内切前锋",
+    "左中场·边锋", "左中场·边前卫", "左中场·边路组织", "左中场·内切前锋",
+    "前腰·组织核心", "前腰·影锋", "前腰·边路型中场", "前腰·传统十号",
+    "右边锋·边锋", "右边锋·内切前锋", "右边锋·边路组织",
+    "左边锋·边锋", "左边锋·内切前锋", "左边锋·边路组织",
+    "中锋·突前前锋", "中锋·抢点前锋", "中锋·伪九号", "中锋·支点前锋",
+    "出球门将", "右后卫·内切进攻翼卫", "左后卫·内切进攻翼卫",
+    "中卫·拉边中卫", "后腰·插上后腰",
+)
+T["player_role_0"] = "无战术角色"
+for role_id, name in enumerate(ROLE_NAMES, 1):
+    T[f"player_role_{role_id}"] = f"{name}+"
+    T[f"player_role_{role_id + 100}"] = f"{name}++"
+
+
+# Values checked against the reflected gameplay enums in FC27.exe.
+T.update({
+    "gender_0": "男", "gender_1": "女",
+    "jerseyfit_0": "普通", "jerseyfit_1": "紧身", "jerseyfit_2": "沿用球队球衣版型",
+    "jerseysleevelengthcode_0": "短袖", "jerseysleevelengthcode_1": "长袖",
+    "jerseysleevelengthcode_2": "短袖加打底衫",
+    "jerseysleevelengthcode_3": "短袖加打底衫和高领",
+    "jerseystylecode_0": "衣摆扎入", "jerseystylecode_1": "衣摆放出", "jerseystylecode_2": "衣摆半扎",
+})
+T.update({
+    "override_fixture_time": "自定义开球时间", "is_unsackable": "禁止解雇经理",
+    "disable_manager_market": "禁用经理市场", "reveal_player_data": "显示隐藏球员数据",
+    "disable_neg_status_check": "停用谈判状态检查", "disable_unexpected_events": "停用突发事件",
+    "disable_dynamic_ovr": "停用动态总评", "max_players_per_report": "每份报告的球员数量上限",
+    "mission_no_cost": "球探任务免费", "reveal_ya_player_data": "显示隐藏青训球员数据",
+    "force_player_tier": "强制使用球员档次",
+    "never_tired_players": "球员不疲劳", "cpu_vs_cpu": "电脑对电脑",
+    "pap_role": "球员生涯队内角色", "formation_pos": "阵型位置", "swap": "交换",
+    "club": "俱乐部", "otherpositions": "其他位置", "create_new": "新建",
+    "bulk_edit": "批量编辑", "reload": "重新加载", "accessory": "配饰",
+    "runningcode": "跑动动作", "finishingcode": "射门动作",
+    "goalnetstanchioncolor1": "球网支柱主色", "goalnetstanchioncolor2": "球网支柱辅色",
+    "teamcolor1": "球队主色", "teamcolor2": "球队辅色", "teamcolor3": "球队第三色",
+    "undo_all_cpu_transfers": "撤销全部电脑转会", "undo_all_cpu_loans": "撤销全部电脑租借",
+    "data_undo_progress_container": "撤销进度", "transfer_undo": "撤销转会",
+})
+for field, label in {
+    "transfer_type": "转会类型", "transfer_fee": "转会费",
+    "player:overallrating": "球员总评", "player:potential": "球员潜力",
+    "transfer_player_overallrating": "球员总评", "transfer_player_potential": "球员潜力",
+    "transfer_from": "转出球队", "transfer_to": "转入球队", "transfer_date": "转会日期",
+    "transfer_player_exchange": "交换球员", "transfer_player_nationality": "球员国籍",
+    "transfer_player_age": "球员年龄", "transfer_player_preferredposition": "球员惯用位置",
+    "transfer_player_otherpositions": "球员其他位置",
+    "from_team:overallrating": "转出球队总评", "to_team:overallrating": "转入球队总评",
+    "transfer_from_team_overallrating": "转出球队总评",
+    "transfer_to_team_overallrating": "转入球队总评",
+}.items():
+    T.setdefault(field, label)
+    T.setdefault(f"table_header_{field}", label)
+    T.setdefault(f"{field}_abbr", label)
+
+
+# The LE month loop begins at 1 and the current AccelCurveType has three values.
+for month in range(1, 13):
+    T[f"month_{month}"] = f"{month} 月"
+
+T.update({
+    "accelerate": "加速类型",
+    "accelerate_0": "平衡型", "accelerate_1": "爆发型", "accelerate_2": "持久型",
+    "accelerate_0_tooltip": "起步与持续加速较为均衡。",
+    "accelerate_1_tooltip": "起步加速较快。",
+    "accelerate_2_tooltip": "更擅长持续加速。",
+})
+
+
+# FC27 LE 27.2.0 constructs these keys from numeric selectors. The source
+# DLL does not supply names for every value. Keep the exact number visible.
+for prefix, label, first, last in (
+    ("job_security_status", "执教职位稳定性", 0, 3),
+    ("pap_role", "球员生涯队内角色", 0, 3),
+    ("headclasscode", "头部模型类别", 0, 1),
+    ("shortstyle", "球裤样式", 0, 1),
+    ("undershortstyle", "打底裤样式", 0, 1),
+    ("muscularitycode", "肌肉类型", 0, 1),
+    ("injury_duration", "伤停时长选项", 0, 10),
+    ("injuryname", "伤病类型", 1, 84),
+    ("shoecolorcode", "球鞋颜色", 0, 31),
+    ("jerseysleevelengthcode", "球衣袖长样式", 0, 7),
+    ("player_contract_role", "合同角色", 0, 5),
+    ("skinmakeup", "面部妆容", 0, 20),
+    ("eyedetail", "眼部细节", 0, 20),
+    ("skincomplexion", "皮肤纹理", 1, 11),
+    ("lipcolor", "唇色", 0, 20),
+    ("socklengthcode", "球袜长度", 0, 7),
+    ("sockstylecode", "球袜样式", 0, 8),
+    ("teamkittypetechid", "球衣类型", 0, 22),
+    ("kits_tab", "球衣类型", 0, 22),
+    ("emotion", "情绪", 1, 5),
+    ("personality", "性格", 1, 5),
+    ("accessorycolourcode", "配饰颜色", 0, 12),
+    ("accessorycolourcode", "配饰颜色", 99, 99),
+    ("bodytype", "体型预设", 0, 9),
+    ("haircolor", "发色", 0, 50),
+    ("hasseasonaljersey", "赛季球衣选项", 0, 7),
+    ("facialhaircolor", "胡须颜色", 0, 50),
+    ("eyecolor", "瞳色", 1, 10),
+    ("tactical_knowledge_skill_id", "战术知识技能", 1, 7),
+    ("tactical_knowledge_skill_level", "战术知识等级", 1, 3),
+):
+    for value in range(first, last + 1):
+        T.setdefault(f"{prefix}_{value}", f"{label} {value}")
+
+for role_id in range(50, 53):
+    T[f"player_role_{role_id}"] = f"战术角色 {role_id}+"
+    T[f"player_role_{role_id + 100}"] = f"战术角色 {role_id}++"
+
+for position in range(28):
+    T.setdefault(f"pos_{position}", T[f"pos_{position}_abbr"])
+
+T.update({
+    "goals_conceded": "失球数", "loan": "租借", "level": "级别",
+    "tip": "提示", "items": "项目", "translate": "翻译",
+    "extension": "扩展名", "file": "文件", "player": "球员", "table": "数据表", "execute": "执行",
+})
+
+
+# Dynamic labels generated by the table and filter renderers.
+for key, label in tuple(T.items()):
+    if key.startswith("table_header_") and not key.startswith("table_header_tooltip_"):
+        field = key.removeprefix("table_header_")
+        if field:
+            T.setdefault(f"table_header_tooltip_{field}", label)
+
+for key, label in (
+    ("player", "球员"), ("team", "球队"), ("manager", "经理"), ("transfer", "转会记录"),
+):
+    T.setdefault(f"notif_title_{key}s_sorted", "排序完成")
+    T.setdefault(f"notif_text_{key}s_sorted", f"已对{label}排序")
+    T.setdefault(f"notif_title_{key}s_filtered", "筛选完成")
+    T.setdefault(f"notif_text_{key}s_filtered", f"已筛选{label}")
+    T.setdefault(f"adv_{key}_filter_list_name_tooltip", f"{label}高级筛选列表的名称")
+
+
+# The attribute matrix formats attr_matrix_{} from the attribute category.
+for key, value in {
+    "contract": "合同", "overview_attr_matrix_group": "能力值概览",
+    "attr_matrix_attack": "进攻", "attr_matrix_defending": "防守",
+    "attr_matrix_skill": "技术", "attr_matrix_power": "力量",
+    "attr_matrix_movement": "移动", "attr_matrix_mentality": "精神属性",
+    "attr_matrix_goalkeeper": "门将",
+    "attr_matrix_gkdiving": "门将扑救", "attr_matrix_gkhandling": "门将接球",
+    "attr_matrix_gkkicking": "门将开球", "attr_matrix_gkreflexes": "门将反应",
+    "attr_matrix_gkspeed": "门将速度", "attr_matrix_gkpositioning": "门将站位",
+    "pot": "潜力", "Flag": "国旗", "AWAY": "客场", "TBD": "待定",
+    "mod": "模组", "clr": "清除", "filter_list_name_tooltip": "筛选列表名称",
+}.items():
+    T.setdefault(key, value)
+
+for field, label in {
+    "previousteamid": "原球队 ID", "previousteam": "原球队",
+    "team_from:teamid": "转出球队 ID", "team_to:teamid": "转入球队 ID",
+    "player:playerid": "球员 ID", "team_from:teamname": "转出球队名称",
+    "team_to:teamname": "转入球队名称", "player:playername": "球员姓名",
+}.items():
+    T.setdefault(field, label)
+    T.setdefault(f"{field}_abbr", label)
+    T.setdefault(f"table_header_{field}", label)
+    T.setdefault(f"table_header_tooltip_{field}", label)
+
+
+# Deep DLL audit: display keys, field registration, and runtime key templates.
+DEEP_FIELDS = {
+    "sel": "选择", "idx": "序号", "address": "地址",
+    "defspe": "防守 / 门将速度", "shohan": "射门 / 门将接球",
+    "driref": "盘带 / 门将反应", "pacdiv": "速度 / 门将扑救",
+    "paskic": "传球 / 门将开球", "phypos": "身体 / 门将站位",
+    "ethnicity": "族裔", "flamethrowercannon": "喷火装置",
+    "stanchionflamethrower": "支柱喷火装置", "genericbanner": "通用横幅",
+    "genericint1": "通用整数 1", "genericint2": "通用整数 2",
+    "powid": "POW 标识", "presassetone": "展示资源 1", "presassettwo": "展示资源 2",
+    "in_transfers": "转会中", "job_security": "执教职位稳定性", "isrewardable": "可获得奖励",
+    "iscustomized": "已自定义", "usercaneditname": "允许修改姓名",
+    "never_tired": "永不疲劳", "selection_bias": "入选倾向",
+    "dev_exp_mul": "成长经验倍率", "dev_exp_no_decl": "成长经验不衰减",
+    "dev_exp_bonus": "成长经验加成", "transfer_sum": "转会金额",
+    "transfer_to_team": "转入球队", "teamkits0:dlc": "主场球衣 DLC 标识",
+    "m:sourceformationid": "主阵型来源 ID", "dm:sourceformationid": "默认阵型来源 ID",
+    "m:formationfullnameid": "主阵型全名 ID", "dm:formationfullnameid": "默认阵型全名 ID",
+    "m:formationaudioid": "主阵型语音 ID", "dm:formationaudioid": "默认阵型语音 ID",
+}
+for field, label in DEEP_FIELDS.items():
+    T.setdefault(field, label)
+
+T.update({
+    "finalize_loan": "完成租借买断", "override_stadium": "自定义球场",
+    "override_weather": "自定义天气", "maverick": "独行侠",
+    "heartbeat": "中流砥柱", "virtuoso": "大师",
+    "sm_tooltip": "花式动作星级", "wf_tooltip": "逆足星级",
+    "sm_wf_tooltip": "花式动作 / 逆足星级",
+    "disable_neg_status_check_tooltip": "停用合同谈判状态检查",
+})
+for field in DEEP_FIELDS.keys() | {
+    "formation_pos", "swap", "edit", "accelerate", "value_to_release_clause_ratio",
+    "goalnetstanchioncolor1", "goalnetstanchioncolor2", "teamcolor1", "teamcolor2", "teamcolor3",
+    "form", "trait1vequal", "trait1vstrong", "trait1vweak", "total_attr",
+}:
+    label = T.get(field, T.get(f"table_header_{field}"))
+    assert label, field
+    T.setdefault(field, label)
+    T.setdefault(f"{field}_abbr", label)
+    T.setdefault(f"table_header_{field}", label)
+    T.setdefault(f"table_header_tooltip_{field}", label)
+
+# The DLL loops over department IDs 0..3; the department names are not in this loop.
+for department in range(4):
+    T[f"coaches_tab_{department}"] = f"教练组 {department}"
+for field, label in (("player", "球员"), ("team", "球队"), ("manager", "经理"), ("transfer", "转会记录")):
+    T[f"{field}s_advanced_list_name"] = f"{label}高级筛选列表"
+
+
+def main():
+    parser = argparse.ArgumentParser(description="生成 FC 27 Live Editor 简体中文词表")
+    parser.add_argument("--output", type=Path, default=Path(
+        "loc/eng_us/localize.json"
+    ))
+    path = parser.parse_args().output
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="\n") as stream:
+        json.dump({"translations": T}, stream, ensure_ascii=False, indent=2, sort_keys=True)
+        stream.write("\n")
+    print(f"{len(T)} 条词条已写入 {path}")
+
+
+if __name__ == "__main__":
+    main()

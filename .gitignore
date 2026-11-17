@@ -1,0 +1,8 @@
+/build/
+__pycache__/
+*.obj
+*.exp
+*.lib
+*.log
+*.bak
+*.zip
