@@ -17,7 +17,7 @@ static void Rect(void*, const NoticeVec2*, const NoticeVec2*, unsigned, float, i
 static float Font() { return 15; }
 int main()
 {
-    NoticeApi api{Open, Begin, End, Nothing, Text, Button, SameLine, Dummy, List, Cursor, Rect, Nothing, Nothing, Font};
+    NoticeApi api{Open, Begin, End, Nothing, Text, Button, SameLine, Dummy, List, Cursor, Rect, Nothing, Nothing, Font, [](){return false;}};
     DrawAuthorNotice(api, false);
     if (opened || ended || rectangles) return 1;
     DrawAuthorNotice(api, true); DrawAuthorNotice(api, true);
@@ -28,6 +28,9 @@ int main()
     g_noticeOpened = g_noticeDismissed = false; closeButton = false; titleClose = true;
     DrawAuthorNotice(api, true); last = opened; DrawAuthorNotice(api, true);
     if (!g_noticeDismissed || opened != last) return 4;
+    g_noticeOpened = g_noticeDismissed = false; titleClose = false;
+    api.escape = [](){return true;}; DrawAuthorNotice(api, true);
+    if (!g_noticeDismissed) return 5;
     puts("Notice lifecycle verified: gated by readiness, opens once, close button and title close stay dismissed.");
     return 0;
 }

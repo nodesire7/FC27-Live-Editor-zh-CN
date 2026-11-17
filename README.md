@@ -1,80 +1,38 @@
-# FC 27 Live Editor 简体中文补丁
+# GBTGame FC 27 启动器与 Live Editor 简体中文补丁
 
-适配本仓库记录的 **FCLiveEditor.DLL 27.2.0**。提供中文词表、中文字库及显示文本补丁源码。
+版本 **v2026.11.18.2**，适配 Live Editor 27.2.0。汉化作者 **A-FEI-**。可在 [GBTGame 论坛](https://bbs.gbtgame.me/) 免费获取。
 
-当前版本：`v2026.11.18.1`。4,267 条译文、156 处显示引用补丁、8 处内联文本补丁。本次补齐球员子页动态短标签与提示，校准 115 个数字选项名称。
-
-LE 初始化完成后显示独立的 **LE 原生风格弹窗**：`A-FEI-`、`BBS.GBTGAME.ME`、“免费在站点获取”，以及 [论坛](https://bbs.gbtgame.me/) 二维码和打开按钮。字体、颜色、控件沿用 LE 当前设置；每次启动显示一次，关闭后不再弹出。
+[下载运行包](https://github.com/nodesire7/FC27-Live-Editor-zh-CN/releases/tag/v2026.11.18.2) · [汉化进度与全部词条](catalog/README.md) · [剩余编号](catalog/pending.md) · [开发代码](CODE/)
 
 ## 安装
 
-1. 在 Releases 下载补丁压缩包并解压，退出游戏。
-2. 执行安装脚本，传入实际游戏目录：
+退出游戏，将运行包内 **Game** 文件夹的内容复制到含有 FC27.exe 的目录。已有补丁可先备份同名文件。保留随包的字体与组件许可证。使用现有汉化 DLL 加载配置，词表使用 English (eng_us) 路径。游戏目录只需以下文件。
 
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\install.ps1 -GameDirectory "你的游戏目录"
-   ```
+| 文件 | 用途 |
+|---|---|
+| GBTGame.FC27.exe | 独立中文界面、启动选择与设置 |
+| FC27LEzh.dll | 游戏内字体、文本与署名窗口 |
+| FC27LEzh_font.b85 | 中文与图标字体 |
+| FC27LEzh_ranges.bin | 字体范围 |
+| loc/eng_us/localize.json | 全部 4,316 条显示文本 |
 
-3. 通过已有的 DLL 加载方式加载 `FC27LEzh.dll`，重新启动游戏。已经使用本补丁旧版的用户可沿用原加载配置。
+## 启动与设置
 
-安装脚本核对原版 LE 文件哈希并备份现有补丁文件，然后复制下列四个文件。它不更改加载器配置，也不包含游戏本体、原版 Live Editor DLL、启动器或账号信息。
+运行 GBTGame.FC27.exe，默认游戏入口以游戏目录为工作目录启动 FC27.exe。LE 模式可选择本机已有的 LE 快捷方式或程序。“记住启动模式”保存到当前用户的 LocalAppData/GBTGame/FC27。LE 模式首次使用需要有效的外部入口；本版没有独立实现 LE 加载后端。
 
-```text
-FC27LEzh.dll
-FC27LEzh_font.b85
-FC27LEzh_ranges.bin
-loc/eng_us/localize.json
-```
+“编辑器设置”和“游戏功能”读取 C:/FC 27 Live Editor 的 le_config.json 和 le_misc_features.json（如系统盘不同则跟随系统盘）。可修改显示、日志、目录、快捷键现有值及比赛、生涯等选项。保存前检查外部修改并备份原文件。自定义程序注入及进程目标选项未集成。
 
-补丁使用 `eng_us` 词表路径；如果 LE 选择了其他语言，需要先切回 English。字库与范围表必须成对使用。恢复安装前版本时，退出游戏，将 `FC27LEzh_backups` 中对应日期目录的文件按原路径复制回去。
+## 进度
 
-## 适配与验证
+- 词表 4,316 条。本版新增 49 条，调整 45 条，覆盖配置键、比赛风格与特性组名称、阵型位置偏移提示。
+- 已识别编辑字段 268 / 268 具备短名及提示，表格字段 252 / 252 具备表头及提示。156 个显示引用和 8 个内联文本位置已列入清单。
+- 349 个选项仍以编号显示。游戏动态内容总量尚未确定，详见[完整进度](catalog/README.md)。
+- 修正游戏弹窗的绘制时机，将其移到 LE 启用汉化字体且处理输入的对话框阶段，支持按钮、窗口关闭与 Esc。原 DLL 的显示位置和补丁已做静态验证，实际游戏中的点击仍待复核。
 
-原版 `FCLiveEditor.DLL` 的 SHA-256：
+## 开发
 
-```text
-0bc6b95bf636c4242cd109ffae9bca04d6542d4b2b88cb3d96cdb3e91da5d66d
-```
+所有源码、构建、安装及验证脚本位于 [CODE](CODE/)。从仓库根目录可运行 `python CODE/verify.py` 和 `python CODE/make_localize2.py`。在 x64 Native Tools 命令行执行 `CODE\build.bat` 重建汉化 DLL，`CODE\test.bat "游戏目录"` 运行静态补丁与关闭行为测试。
 
-- 300 处表格字段注册对应 252 个唯一字段，表头及表格提示缺失为 0。
-- 341 处编辑字段构造调用中核实 268 个字段（含 152 个球员字段），这些字段动态请求的 `_abbr` / `_tooltip` 均有译文；4 处运行时动态字段不计入已确认覆盖。
-- 115 个数字选项已依据当前游戏二进制及上游字段定义校准，涵盖伤病、合同角色、教练组、战术知识、执教稳定性及部分外观。
-- 原 DLL 仅映射为数据，验证显示补丁、UTF-8 长度、弹窗渲染入口及拒绝错误签名。测试不执行原 DLL。
-- 字体图集测试覆盖 913 个所需码点；新增“腘”字范围。独立 ImGui 预览检查弹窗排版，并从渲染截图成功解码二维码。
+启动器的 Win32 / DX11 窗口来自 [上游 MIT 源码](https://github.com/xAranaktu/FIFA-Live-Editor-Launcher/tree/283ebb9ebd0c5958d769ae4d3d89b8bcfd9c54df)。检出该提交，然后在 x64 Native Tools 中执行 `CODE\launcher\build.bat "上游源码目录"`，生成仓库根目录的 GBTGame.FC27.exe。使用该提交内的 Dear ImGui 和 nlohmann/json。组件许可证见 [third_party](third_party/)。汉化字体包含霞鹜文楷与 Font Awesome。
 
-**覆盖边界：**尚未进行新版 DLL 的游戏内逐页验证；新弹窗接入已核实的 DX12 路径，未验证 DX11。部分妆容、颜色、体型、扩展球衣资源编号缺少当前版本名称表，仍保留中文类别加编号。伤病 83/84、伤停时长序号、合同角色 0、战术角色 50–52 也未冒填名称；完整未知项见审计报告。
-
-本轮核对时球员数据能够读取，用户已确认恢复；此前空数据问题未复现，因此本版不声称修复该问题。日志、脚本 API、内部数据库键和隐藏控件 ID 不做全局替换。
-
-详见 [DLL 核对记录](audit/DLL核对记录.md) 和 [验证统计](audit/validation_summary.json)。升级 LE 后需重新核对 RVA 和指令，不能直接套用其他版本。
-
-## 重建
-
-使用 Windows x64、Visual Studio C++ 工具和 Python 3。在 x64 Native Tools Command Prompt 中运行：
-
-```bat
-build.bat
-python make_localize2.py --output loc/eng_us/localize.json
-test.bat "你的游戏目录"
-python verify.py --game-dir "你的游戏目录"
-```
-
-`test.bat` 运行内存补丁测试；`verify.py` 核对版本、词表覆盖及发布文件哈希。
-
-字库由霞鹜文楷 1.530 与 Font Awesome Free 6.7.2 合并生成，随包提供可直接使用的产物。重新生成需要 `fonttools`、对应字体和 ImGui 1.90.6 的 `binary_to_compressed_c`：
-
-```powershell
-python -m pip install fonttools
-python make_ranges2.py --font LXGWWenKai-Regular.ttf --icons fa-solid-900.ttf --encoder binary_to_compressed_c.exe --localize loc/eng_us/localize.json --output-dir .
-```
-
-重新生成或修改文件后，原发布版的 `checksums.json` 将不再匹配，需重新验证并更新校验清单。
-
-## 第三方来源
-
-- [FC 27 Live Editor](https://github.com/xAranaktu/FC-27-Live-Editor)：独立上游项目，本仓库不是官方版本。
-- [霞鹜文楷](https://github.com/lxgw/LxgwWenKai)：字体许可证见 `third_party/font_licenses/LXGW-WenKai-1.530.txt`。
-- [Font Awesome Free](https://github.com/FortAwesome/Font-Awesome)：字体许可证见 `third_party/font_licenses/Font-Awesome-Free-6.7.2.txt`。
-- [Dear ImGui](https://github.com/ocornut/imgui)：字体压缩工具和独立图集验证使用上游工具。
-
-发布包不包含系统商业字体。第三方组件适用其各自许可证。
+所支持原版 FCLiveEditor.DLL 的 SHA-256 为 `0bc6b95bf636c4242cd109ffae9bca04d6542d4b2b88cb3d96cdb3e91da5d66d`。

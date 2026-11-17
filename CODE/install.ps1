@@ -1,15 +1,16 @@
 param([Parameter(Mandatory = $true)][string]$GameDirectory)
 $ErrorActionPreference = 'Stop'
 $gamePath = (Resolve-Path -LiteralPath $GameDirectory).Path
+$packageRoot = Split-Path -Parent $PSScriptRoot
 $targetDll = Join-Path $gamePath 'FCLiveEditor.DLL'
-$summary = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'audit/validation_summary.json') -Raw | ConvertFrom-Json
+$summary = Get-Content -LiteralPath (Join-Path $packageRoot 'audit/validation_summary.json') -Raw | ConvertFrom-Json
 if ((Get-FileHash -LiteralPath $targetDll -Algorithm SHA256).Hash.ToLowerInvariant() -ne $summary.target_sha256) {
     throw 'This FCLiveEditor.DLL version is not supported. No files were copied.'
 }
-$checksums = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'checksums.json') -Raw | ConvertFrom-Json
-$files = @('FC27LEzh.dll', 'FC27LEzh_font.b85', 'FC27LEzh_ranges.bin', 'loc/eng_us/localize.json')
+$checksums = Get-Content -LiteralPath (Join-Path $packageRoot 'checksums.json') -Raw | ConvertFrom-Json
+$files = @('GBTGame.FC27.exe', 'FC27LEzh.dll', 'FC27LEzh_font.b85', 'FC27LEzh_ranges.bin', 'loc/eng_us/localize.json')
 foreach ($name in $files) {
-    $sourceFile = Join-Path $PSScriptRoot $name
+    $sourceFile = Join-Path $packageRoot $name
     if ((Get-FileHash -LiteralPath $sourceFile -Algorithm SHA256).Hash.ToLowerInvariant() -ne $checksums.$name) {
         throw "Payload checksum mismatch: $name"
     }
@@ -36,7 +37,7 @@ foreach ($name in $files) {
 foreach ($name in $files) {
     $destination = Join-Path $gamePath $name
     New-Item -ItemType Directory -Path (Split-Path -Parent $destination) -Force | Out-Null
-    Copy-Item -LiteralPath (Join-Path $PSScriptRoot $name) -Destination $destination -Force
+    Copy-Item -LiteralPath (Join-Path $packageRoot $name) -Destination $destination -Force
     if ((Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash.ToLowerInvariant() -ne $checksums.$name) {
         throw "Copy verification failed: $name. Backup: $backupPath"
     }

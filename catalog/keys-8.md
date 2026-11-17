@@ -1,0 +1,120 @@
+# 完整词条清单
+
+| 原始键 | 当前显示 | 状态 |
+|---|---|---|
+| `transfers` | 转会 | 已有显示文本 |
+| `transfers_advanced_list_name` | 转会记录高级筛选列表 | 已有显示文本 |
+| `transfers_table_container` | 转会列表 | 已有显示文本 |
+| `translate` | 翻译 | 已有显示文本 |
+| `tree_container` | 目录树 | 已有显示文本 |
+| `u18` | 未满 18 岁人数 | 已有显示文本 |
+| `u18_abbr` | 未满 18 岁人数 | 已有显示文本 |
+| `u21` | 未满 21 岁人数 | 已有显示文本 |
+| `u21_abbr` | 未满 21 岁人数 | 已有显示文本 |
+| `uefa_cl_wins` | 欧冠冠军次数 | 已有显示文本 |
+| `uefa_cl_wins_abbr` | 欧冠冠军次数 | 已有显示文本 |
+| `uefa_cl_wins_tooltip` | 欧冠冠军次数 | 已有显示文本 |
+| `uefa_consecutive_wins` | 欧足联赛事连冠次数 | 已有显示文本 |
+| `uefa_consecutive_wins_abbr` | 欧足联赛事连冠次数 | 已有显示文本 |
+| `uefa_consecutive_wins_tooltip` | 欧足联赛事连冠次数 | 已有显示文本 |
+| `uefa_el_wins` | 欧联冠军次数 | 已有显示文本 |
+| `uefa_el_wins_abbr` | 欧联冠军次数 | 已有显示文本 |
+| `uefa_el_wins_tooltip` | 欧联冠军次数 | 已有显示文本 |
+| `uefa_uecl_wins` | 欧协联冠军次数 | 已有显示文本 |
+| `uefa_uecl_wins_abbr` | 欧协联冠军次数 | 已有显示文本 |
+| `ui` | 界面 | 已有显示文本 |
+| `uid` | 唯一标识 | 已有显示文本 |
+| `undershortstyle` | 打底裤样式 | 已有显示文本 |
+| `undershortstyle_0` | 紧身短裤 | 已有显示文本 |
+| `undershortstyle_1` | 紧身长裤 | 已有显示文本 |
+| `undershortstyle_abbr` | 打底裤样式 | 已有显示文本 |
+| `undershortstyle_tooltip` | 打底裤样式 | 已有显示文本 |
+| `undo_all_cpu_loans` | 撤销全部电脑租借 | 已有显示文本 |
+| `undo_all_cpu_transfers` | 撤销全部电脑转会 | 已有显示文本 |
+| `units_format` | 计量单位 | 已有显示文本 |
+| `unknown` | 未知 | 已有显示文本 |
+| `unlimited_subs` | 无限替补 | 已有显示文本 |
+| `unlock_all_playstyles_slots` | 解锁所有比赛风格槽位 | 已有显示文本 |
+| `unlock_all_playstyles_slots_tooltip` | 解锁全部比赛风格槽位 | 已有显示文本 |
+| `unsackable` | 禁止解雇经理 | 已有显示文本 |
+| `user_never_tired_players` | 玩家球员永不疲劳 | 已有显示文本 |
+| `user_team` | 玩家球队 | 已有显示文本 |
+| `user_unlimited_subs` | 玩家无限替补 | 已有显示文本 |
+| `usercaneditname` | 允许修改姓名 | 已有显示文本 |
+| `usercaneditname_abbr` | 允许修改姓名 | 已有显示文本 |
+| `usercaneditname_tooltip` | 允许修改姓名 | 已有显示文本 |
+| `utcoffset` | UTC 时差 | 已有显示文本 |
+| `utcoffset_abbr` | UTC 时差 | 已有显示文本 |
+| `val_type` | 数值类型 | 已有显示文本 |
+| `valid_records` | 有效记录 | 已有显示文本 |
+| `valid_records_abbr` | 有效记录 | 已有显示文本 |
+| `value` | 身价 | 已有显示文本 |
+| `value_abbr` | 身价 | 已有显示文本 |
+| `value_to_release_clause_ratio` | 身价/解约金比例 | 已有显示文本 |
+| `value_to_release_clause_ratio_abbr` | 身价/解约金比例 | 已有显示文本 |
+| `view` | 视图 | 已有显示文本 |
+| `view_as_hex` | 以十六进制查看 | 已有显示文本 |
+| `view_as_img` | 以图像查看 | 已有显示文本 |
+| `view_as_text` | 以文本查看 | 已有显示文本 |
+| `virtuoso` | 大师 | 已有显示文本 |
+| `virtuoso_tooltip` | 大师 | 已有显示文本 |
+| `vision` | 视野 | 已有显示文本 |
+| `vision_abbr` | 视野 | 已有显示文本 |
+| `vision_tooltip` | 视野 | 已有显示文本 |
+| `volleys` | 凌空射门 | 已有显示文本 |
+| `volleys_abbr` | 凌空射门 | 已有显示文本 |
+| `volleys_tooltip` | 凌空射门 | 已有显示文本 |
+| `vpro_bypass_objectives` | 跳过球员生涯目标 | 已有显示文本 |
+| `vpro_bypass_objectives_tooltip` | 跳过生涯目标 | 已有显示文本 |
+| `vpro_contract_status` | 生涯合同状态 | 已有显示文本 |
+| `vpro_contract_status_2` | 生涯合同状态 | 已有显示文本 |
+| `vpro_contract_status_3` | 生涯合同状态 | 已有显示文本 |
+| `wage` | 周薪 | 已有显示文本 |
+| `wage_abbr` | 周薪 | 已有显示文本 |
+| `wage_tooltip` | 周薪 | 已有显示文本 |
+| `weakfootabilitytypecode` | 逆足能力 | 已有显示文本 |
+| `weakfootabilitytypecode_abbr` | 逆足能力 | 已有显示文本 |
+| `weakfootabilitytypecode_tooltip` | 逆足能力 | 已有显示文本 |
+| `weather` | 天气 | 已有显示文本 |
+| `weather_0` | 干燥 | 已有显示文本 |
+| `weather_1` | 下雨 | 已有显示文本 |
+| `weather_2` | 下雪 | 已有显示文本 |
+| `weather_3` | 阴天 | 已有显示文本 |
+| `weather_4` | 泥泞 | 已有显示文本 |
+| `weight` | 体重 | 已有显示文本 |
+| `weight_abbr` | 体重 | 已有显示文本 |
+| `weight_tooltip` | 体重 | 已有显示文本 |
+| `wf` | 逆足 | 已有显示文本 |
+| `wf_tooltip` | 逆足星级 | 已有显示文本 |
+| `written_records` | 已写入记录 | 已有显示文本 |
+| `written_records_abbr` | 已写入记录 | 已有显示文本 |
+| `y_scout:experience` | 青训球探经验 | 已有显示文本 |
+| `y_scout:experience_abbr` | 青训球探经验 | 已有显示文本 |
+| `y_scout:experience_tooltip` | 青训球探经验 | 已有显示文本 |
+| `y_scout:firstname` | 青训球探名 | 已有显示文本 |
+| `y_scout:firstname_abbr` | 青训球探名 | 已有显示文本 |
+| `y_scout:firstname_tooltip` | 青训球探名 | 已有显示文本 |
+| `y_scout:id` | 青训球探 ID | 已有显示文本 |
+| `y_scout:id_abbr` | 青训球探 ID | 已有显示文本 |
+| `y_scout:judgment` | 青训球探判断力 | 已有显示文本 |
+| `y_scout:judgment_abbr` | 青训球探判断力 | 已有显示文本 |
+| `y_scout:judgment_tooltip` | 青训球探判断力 | 已有显示文本 |
+| `y_scout:lastname` | 青训球探姓 | 已有显示文本 |
+| `y_scout:lastname_abbr` | 青训球探姓 | 已有显示文本 |
+| `y_scout:lastname_tooltip` | 青训球探姓 | 已有显示文本 |
+| `y_scout:level` | 青训球探等级 | 已有显示文本 |
+| `y_scout:level_abbr` | 青训球探等级 | 已有显示文本 |
+| `y_scout:nationality` | 青训球探国籍 | 已有显示文本 |
+| `y_scout:nationality_abbr` | 青训球探国籍 | 已有显示文本 |
+| `y_scout:nationality_tooltip` | 青训球探国籍 | 已有显示文本 |
+| `year` | 年份 | 已有显示文本 |
+| `year_abbr` | 年份 | 已有显示文本 |
+| `year_tooltip` | 年份 | 已有显示文本 |
+| `years_old_abbr` | 岁 | 已有显示文本 |
+| `yes` | 是 | 已有显示文本 |
+| `yes_no` | 是／否 | 已有显示文本 |
+| `youth` | 青训 | 已有显示文本 |
+| `youth_academy` | 青训营 | 已有显示文本 |
+| `youthdevelopment` | 青训水平 | 已有显示文本 |
+| `youthdevelopment_abbr` | 青训水平 | 已有显示文本 |
+| `youthdevelopment_tooltip` | 青训水平 | 已有显示文本 |

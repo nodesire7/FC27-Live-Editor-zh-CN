@@ -11,5 +11,5 @@ pushd build
 cl /nologo /LD /O2 /MT /W3 /EHsc /utf-8 ..\src\FC27LEzhFont.cpp /Fe:FC27LEzh.dll
 if errorlevel 1 (popd & exit /b 1)
 popd
-copy /y build\FC27LEzh.dll FC27LEzh.dll >nul
+copy /y build\FC27LEzh.dll ..\FC27LEzh.dll >nul
 exit /b %errorlevel%

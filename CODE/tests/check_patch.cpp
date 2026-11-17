@@ -206,17 +206,17 @@ int wmain(int argc, wchar_t** argv) {
     if (strcmp(reinterpret_cast<const char*>(image + 0x64EC44), "新建")) return 22;
     if (strcmp(reinterpret_cast<const char*>(image + 0x64EE38), "选择 LUA 文件")) return 22;
     if (strcmp(reinterpret_cast<const char*>(image + 0x64EE70), "运行 LUA ")) return 22;
-    uint8_t callBefore[5]; memcpy(callBefore, image + 0x340E9D, 5);
+    uint8_t callBefore[5]; memcpy(callBefore, image + 0x46C478, 5);
     const uint8_t readyBefore = image[0xA51A5D];
     image[0x26AB30] ^= 1;
-    if (PatchStartupNotice(le) || memcmp(callBefore, image + 0x340E9D, 5)) return 23;
+    if (PatchStartupNotice(le) || memcmp(callBefore, image + 0x46C478, 5)) return 23;
     image[0x26AB30] ^= 1;
     if (!PatchStartupNotice(le)) return 24;
-    int32_t noticeDisp; memcpy(&noticeDisp, image + 0x340E9E, 4);
-    const uint8_t* bridge = image + 0x340EA2 + noticeDisp;
+    int32_t noticeDisp; memcpy(&noticeDisp, image + 0x46C479, 4);
+    const uint8_t* bridge = image + 0x46C47D + noticeDisp;
     if (bridge[0] != 0xFF || bridge[1] != 0x25) return 25;
-    void (*noticeTarget)(); memcpy(&noticeTarget, bridge + 6, sizeof(noticeTarget));
-    if (noticeTarget != &NoticeRender || g_originalRender != reinterpret_cast<void(*)()>(image + 0x2766A0) ||
+    void (*noticeTarget)(void*); memcpy(&noticeTarget, bridge + 6, sizeof(noticeTarget));
+    if (noticeTarget != &NoticeRender || g_originalDialog != reinterpret_cast<void(*)(void*)>(image + 0x3ED500) ||
         image[0xA51A5D] != readyBefore) return 26;
     printf("Verified 156 display references, UTF-8 lengths, font operands, 8 inline strings, popup render bridge, and mismatch rejection.\n");
     return 0;

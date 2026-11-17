@@ -6,3 +6,6 @@ __pycache__/
 *.log
 *.bak
 *.zip
+
+/CODE/build/
+/CODE/launcher/build/

@@ -4,7 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 
-root = Path(__file__).resolve().parent
+root = Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--game-dir", type=Path)
 args = parser.parse_args()

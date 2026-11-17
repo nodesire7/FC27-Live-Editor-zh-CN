@@ -18,6 +18,7 @@ struct NoticeApi
     void (*openForum)();
     void (*centerPopup)();
     float (*fontSize)();
+    bool (*escape)();
 };
 static bool g_noticeOpened = false;
 static bool g_noticeDismissed = false;
@@ -63,7 +64,7 @@ static void DrawAuthorNotice(const NoticeApi& api, bool ready)
         NoticeVec2 button{0, 0};
         if (api.button("打开论坛###FC27LEzhForum", &button)) api.openForum();
         api.sameLine(0, -1);
-        if (api.button("关闭###FC27LEzhClose", &button))
+        if (api.button("关闭 (Esc)###FC27LEzhClose", &button) || api.escape())
         {
             g_noticeDismissed = true;
             api.closePopup();

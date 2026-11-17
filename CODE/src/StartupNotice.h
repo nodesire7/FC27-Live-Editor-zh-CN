@@ -3,9 +3,10 @@
 #include <shellapi.h>
 #include "NoticeUi.h"
 #pragma comment(lib, "shell32.lib")
+#pragma comment(lib, "user32.lib")
 static uint8_t* g_noticeModule = nullptr;
 static NoticeApi g_noticeApi{};
-static void (*g_originalRender)() = nullptr;
+static void (*g_originalDialog)(void*) = nullptr;
 static void NoticeOpenForum()
 {
     ShellExecuteW(nullptr, L"open", L"https://bbs.gbtgame.me/", nullptr, nullptr, SW_SHOWNORMAL);
@@ -19,22 +20,32 @@ static void NoticeCenterPopup()
     auto setPosition = reinterpret_cast<void(*)(const NoticeVec2*, int, const NoticeVec2*)>(g_noticeModule + 0x27BB60);
     setPosition(&center, 8, &pivot); // ImGuiCond_Appearing
 }
-static void NoticeRender()
+static void NoticeRender(void* dialog)
 {
-    // This flag is set by Present only after UIInitDoneNotify returns.
-    // The wrapper is called after LE's widgets and before ImGui::Render.
-    const auto* context = *reinterpret_cast<uint8_t**>(g_noticeModule + 0xA50E20);
-    if (context && context[0x40A8])
-        DrawAuthorNotice(g_noticeApi, g_noticeModule[0xA51A5D] != 0);
-    g_originalRender();
+    g_originalDialog(dialog);
+    // This call is inside LE's visible, interactive window pass, between
+    // its primary PushFont and PopFont, on the same stack as its dialogs.
+    if (!g_noticeDismissed && g_noticeModule[0xA51A5D])
+    {
+        const bool first = !g_noticeOpened;
+        DrawAuthorNotice(g_noticeApi, true);
+        if (first && g_noticeOpened) Log("Author notice shown in LE dialog pass");
+        if (g_noticeDismissed) Log("Author notice dismissed");
+    }
+}
+static bool NoticeEscape()
+{
+    DWORD pid = 0;
+    GetWindowThreadProcessId(GetForegroundWindow(), &pid);
+    return pid == GetCurrentProcessId() && (GetAsyncKeyState(VK_ESCAPE) & 0x8000) != 0;
 }
 static bool PatchStartupNotice(HMODULE le)
 {
     struct Signature { uintptr_t rva; const char* bytes; size_t size; };
     static const Signature signatures[] = {
+        {0x46C470, "\xE8\x6B\x17\xF8\xFF\x48\x8B\xC8\xE8\x83\x10\xF8\xFF", 13},
+        {0x46C218, "\x40\x38\x6F\x05\x0F\x84\xB7\x04\x00\x00\x48\x8B\x4F\x08\xE8\x65\x9C\xE0\xFF", 19},
         {0x34106D, "\xE8\x1E\xF2\x12\x00\xC6\x05\xE4\x09\x71\x00\x01", 12},
-        {0x340E90, "\xE8\x4B\x36\xF3\xFF\x48\x8B\xCB\xE8\x43\xB3\x12\x00\xE8\xFE\x57\xF3\xFF", 18},
-        {0x2766A0, "\x40\x57\x48\x83\xEC\x50\x48\x8B\x3D\x73\xA7\x7D\x00\x8B\x87\x98", 16},
         {0x275500, "\x40\x53\x55\x56\x57\x41\x56\x48\x83\xEC\x20\x48\x8B\x2D\x0E\xB9", 16},
         {0x25C9C0, "\x40\x53\x55\x56\x57\x41\x54\x41\x56\x41\x57\x48\x83\xEC\x20\x48", 16},
         {0x269530, "\x40\x53\x48\x83\xEC\x20\x48\x8B\x1D\xE3\x78\x7E\x00\x48\x8B\x83", 16},
@@ -73,13 +84,13 @@ static bool PatchStartupNotice(HMODULE le)
     DWORD oldProtect = 0;
     if (!VirtualProtect(bridge, 16, PAGE_EXECUTE_READ, &oldProtect))
     { VirtualFree(bridge, 0, MEM_RELEASE); return false; }
-    auto* call = module + 0x340E9D;
+    auto* call = module + 0x46C478;
     const intptr_t delta = reinterpret_cast<intptr_t>(bridge) - reinterpret_cast<intptr_t>(call + 5);
     if (delta < INT32_MIN || delta > INT32_MAX ||
         !VirtualProtect(call, 5, PAGE_EXECUTE_READWRITE, &oldProtect))
     { VirtualFree(bridge, 0, MEM_RELEASE); return false; }
     g_noticeModule = module;
-    g_originalRender = reinterpret_cast<void(*)()>(module + 0x2766A0);
+    g_originalDialog = reinterpret_cast<void(*)(void*)>(module + 0x3ED500);
 #define NOTICE_BIND(member, address) g_noticeApi.member = reinterpret_cast<decltype(g_noticeApi.member)>(module + address)
     NOTICE_BIND(openPopup, 0x275500); NOTICE_BIND(beginPopup, 0x25C9C0);
     NOTICE_BIND(endPopup, 0x269530); NOTICE_BIND(closePopup, 0x25DDE0);
@@ -88,6 +99,7 @@ static bool PatchStartupNotice(HMODULE le)
     NOTICE_BIND(drawList, 0x26BF60); NOTICE_BIND(cursor, 0x26AB30);
     NOTICE_BIND(fillRect, 0x286660); NOTICE_BIND(fontSize, 0x26ABB0);
 #undef NOTICE_BIND
+    g_noticeApi.escape = &NoticeEscape;
     g_noticeApi.openForum = &NoticeOpenForum;
     g_noticeApi.centerPopup = &NoticeCenterPopup;
     FlushInstructionCache(GetCurrentProcess(), bridge, 16);
