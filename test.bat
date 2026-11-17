@@ -15,6 +15,10 @@ pushd build
 cl /nologo /O2 /EHsc /utf-8 ..\tests\check_patch.cpp /Fe:check_patch.exe
 if errorlevel 1 (popd & exit /b 1)
 check_patch.exe "%~1"
+if errorlevel 1 (popd & exit /b 1)
+cl /nologo /O2 /EHsc /utf-8 ..\tests\check_notice.cpp /Fe:check_notice.exe
+if errorlevel 1 (popd & exit /b 1)
+check_notice.exe
 set CHECK_RESULT=%errorlevel%
 popd
 exit /b %CHECK_RESULT%

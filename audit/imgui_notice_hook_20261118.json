@@ -1,0 +1,246 @@
+{
+  "target": "FCLiveEditor.DLL",
+  "sha256": "0bc6b95bf636c4242cd109ffae9bca04d6542d4b2b88cb3d96cdb3e91da5d66d",
+  "analysis": "Static PE/disassembly; no runtime execution or hook installed by this audit.",
+  "hook": {
+    "site": "0x340e9d",
+    "original_bytes": "E8 FE 57 F3 FF",
+    "original_target": "0x2766a0",
+    "abi": "void() Windows x64",
+    "containing_function": "0x340aa0..0x3410c4 D3D12 Present::NewCode",
+    "sequence": [
+      {
+        "site": "0x340e86",
+        "target": "0x2bcd30",
+        "meaning": "DX12 backend NewFrame"
+      },
+      {
+        "site": "0x340e8b",
+        "target": "0x2be1a0",
+        "meaning": "Win32 backend NewFrame"
+      },
+      {
+        "site": "0x340e90",
+        "target": "0x2744e0",
+        "meaning": "ImGui NewFrame"
+      },
+      {
+        "site": "0x340e98",
+        "target": "0x46c1e0",
+        "meaning": "LE GUI widgets"
+      },
+      {
+        "site": "0x340e9d",
+        "target": "0x2766a0",
+        "meaning": "ImGui Render; recommended replacement callsite"
+      },
+      {
+        "site": "0x340f5e",
+        "target": "0x26ab80",
+        "meaning": "GetDrawData"
+      },
+      {
+        "site": "0x340f69",
+        "target": "0x2bcd70",
+        "meaning": "DX12 RenderDrawData"
+      }
+    ],
+    "rules": [
+      "Replace only verified five-byte E8 call using near relay if target out of signed32-bit range. No function prologue detour required.",
+      "Wrapper draws notice first, then calls original Render exactly once even when notice closed or not yet ready.",
+      "Do not call ImGui from loader/background worker. Wrapper executes synchronously on original Present/render thread with the original current context.",
+      "NewFrame is already completed; do not call it again. After original Render, frame is finalized and widget calls are too late."
+    ]
+  },
+  "readiness": {
+    "context_slot_rva": "0xa50e20",
+    "within_frame_scope_context_offset": "0x40a8",
+    "within_frame_write_site": "0x27472d",
+    "init_done_flag_rva": "0xa51a5d",
+    "init_done_frame_counter_rva": "0xa51a84",
+    "notification_call": "0x34106d -> 0x470290",
+    "flag_store_site": "0x341072",
+    "flag_store_bytes": "C6 05 E4 09 71 00 01",
+    "sequence": "At end of successful Present path, if flag false increment counter; when counter==75 call LE::GUI::UIInitDoneNotify, then set flag=1. Render hook earlier in same function sees true from the next successful frame (frame76).",
+    "recommended_gate": "context != nullptr && *(context+0x40a8)!=0 && *(module+0xa51a5d)!=0",
+    "caveat": "InitDone means original LE UI readiness, not proof career/player database is loaded."
+  },
+  "layout": {
+    "get_io_rva": "0x26b180",
+    "display_size_offsets": [
+      8,
+      12
+    ],
+    "display_size_evidence": [
+      "0x2BE1BC GetIO -> R15",
+      "0x2BE1EF GetClientRect import",
+      "0x2BE213 writes height to IO+0xC",
+      "0x2BE219 writes width to IO+8"
+    ],
+    "font_size_rva": "0x26abb0",
+    "center": "Vec2{io_width*0.5f,io_height*0.5f}; pivot{0.5f,0.5f}; SetNextWindowPos before BeginPopupModal"
+  },
+  "apis": [
+    {
+      "name": "Render",
+      "rva": "0x2766a0",
+      "signature16": "40 57 48 83 EC 50 48 8B 3D 73 A7 7D 00 8B 87 98",
+      "abi": "void()",
+      "evidence": "No arguments; consumes GImGui. First calls EndFrame if FrameCountEnded != FrameCount."
+    },
+    {
+      "name": "NewFrame",
+      "rva": "0x2744e0",
+      "signature16": "40 53 55 56 57 41 56 41 57 48 83 EC 78 48 8B 2D",
+      "abi": "void()",
+      "evidence": "Called at 0x340E90 before GUI drawing."
+    },
+    {
+      "name": "GetCurrentContext",
+      "rva": "0x26aa80",
+      "signature16": "48 8B 05 99 63 7E 00 C3 CC CC CC CC CC CC CC CC",
+      "abi": "void*()",
+      "evidence": "Returns GImGui pointer."
+    },
+    {
+      "name": "GetIO",
+      "rva": "0x26b180",
+      "signature16": "48 8B 05 99 5C 7E 00 48 83 C0 08 C3 CC CC CC CC",
+      "abi": "void*()",
+      "evidence": "Returns GImGui+8; DisplaySize floats at returned IO+8/+12."
+    },
+    {
+      "name": "GetFontSize",
+      "rva": "0x26abb0",
+      "signature16": "48 8B 05 69 62 7E 00 F3 0F 10 80 78 3E 00 00 C3",
+      "abi": "float()",
+      "evidence": "Returns float in XMM0 from GImGui+0x3E78."
+    },
+    {
+      "name": "Begin",
+      "rva": "0x2583f0",
+      "signature16": "4C 8B DC 55 56 57 49 8D AB 28 FE FF FF 48 81 EC",
+      "abi": "bool(const char* name, bool* open, int flags)",
+      "evidence": "RCX/RDX/R8D; caller 0x428F2C. Always pair normal Begin with End."
+    },
+    {
+      "name": "End",
+      "rva": "0x268170",
+      "signature16": "40 57 48 83 EC 20 48 8B 3D A3 8C 7E 00 83 BF 10",
+      "abi": "void()",
+      "evidence": "Normal window End. EndPopup tail-calls this internally."
+    },
+    {
+      "name": "TextUnformatted",
+      "rva": "0x2b12b0",
+      "signature16": "41 B8 01 00 00 00 E9 95 FB FF FF CC CC CC CC CC",
+      "abi": "void(const char* text, const char* text_end)",
+      "evidence": "RCX/RDX. Sets R8D=1 then tail-calls TextEx0x2B0E50; null end uses strlen at0x2B0EC5."
+    },
+    {
+      "name": "Text",
+      "rva": "0x2b0cb0",
+      "signature16": "4C 8B DC 49 89 4B 08 49 89 53 10 4D 89 43 18 4D",
+      "abi": "void(const char* format, ...)",
+      "evidence": "Variadic; NOT TextWrapped. Stores vararg registers and constructs va_list. Use TextUnformatted for arbitrary UTF-8."
+    },
+    {
+      "name": "Button",
+      "rva": "0x29fe00",
+      "signature16": "45 33 C0 E9 58 06 00 00 CC CC CC CC CC CC CC CC",
+      "abi": "bool(const char* label, const Vec2* size)",
+      "evidence": "RCX label/RDX pointer to two floats; return AL. Sets R8D=0 then tail-calls ButtonEx0x2A0460."
+    },
+    {
+      "name": "OpenPopup",
+      "rva": "0x275500",
+      "signature16": "40 53 55 56 57 41 56 48 83 EC 20 48 8B 2D 0E B9",
+      "abi": "void(const char* id, int popup_flags)",
+      "evidence": "RCX/EDX. Native call 0x476575 uses flags0."
+    },
+    {
+      "name": "BeginPopupModal",
+      "rva": "0x25c9c0",
+      "signature16": "40 53 55 56 57 41 54 41 56 41 57 48 83 EC 20 48",
+      "abi": "bool(const char* name, bool* open, int window_flags)",
+      "evidence": "RCX/RDX/R8D. Native call 0x476591 uses null open and flags0x40."
+    },
+    {
+      "name": "EndPopup",
+      "rva": "0x269530",
+      "signature16": "40 53 48 83 EC 20 48 8B 1D E3 78 7E 00 48 8B 83",
+      "abi": "void()",
+      "evidence": "Only call if BeginPopupModal returned true; native tail-call at0x47663A."
+    },
+    {
+      "name": "CloseCurrentPopup",
+      "rva": "0x25dde0",
+      "signature16": "48 89 5C 24 08 57 48 83 EC 20 48 8B 3D 2F 30 7F",
+      "abi": "void()",
+      "evidence": "Native close button calls at0x4765EF and0x47662C."
+    },
+    {
+      "name": "SameLine",
+      "rva": "0x27a2b0",
+      "signature16": "48 8B 05 69 6B 7D 00 0F 28 D8 48 8B 88 40 41 00",
+      "abi": "void(float offset_from_start_x, float spacing)",
+      "evidence": "XMM0/XMM1; native at0x476609 uses XMM0=0 and XMM1=spacing."
+    },
+    {
+      "name": "SetNextWindowPos",
+      "rva": "0x27bb60",
+      "signature16": "4C 8B 0D B9 52 7D 00 B8 01 00 00 00 41 83 89 40",
+      "abi": "void(const Vec2* pos, int cond, const Vec2* pivot)",
+      "evidence": "RCX/EDX/R8; writes pending position/pivot. Use pos=DisplaySize/2,pivot={0.5,0.5} before BeginPopupModal."
+    },
+    {
+      "name": "SetNextWindowSize",
+      "rva": "0x27bbd0",
+      "signature16": "4C 8B 05 49 52 7D 00 B8 01 00 00 00 41 83 88 40",
+      "abi": "void(const Vec2* size, int cond)",
+      "evidence": "RCX/EDX; native 0x428F16 uses cond4."
+    },
+    {
+      "name": "GetCursorScreenPos",
+      "rva": "0x26ab30",
+      "signature16": "48 8B 05 E9 62 7E 00 48 8B 90 40 41 00 00 48 8B",
+      "abi": "Vec2* (Vec2* result)",
+      "evidence": "MSVC hidden return buffer RCX for nontrivial ImVec2; stores two floats to RCX, returns RCX."
+    },
+    {
+      "name": "GetWindowDrawList",
+      "rva": "0x26bf60",
+      "signature16": "48 8B 0D B9 4E 7E 00 48 8B 81 40 41 00 00 C6 80",
+      "abi": "void*()",
+      "evidence": "Returns active window drawlist; call only inside successful BeginPopupModal."
+    },
+    {
+      "name": "Dummy",
+      "rva": "0x2a5f60",
+      "signature16": "48 83 EC 38 48 8B 15 B5 AE 7A 00 48 8B 82 40 41",
+      "abi": "void(const Vec2* size)",
+      "evidence": "RCX points to width/height floats."
+    },
+    {
+      "name": "AddRectFilled",
+      "rva": "0x286660",
+      "signature16": "41 F7 C1 00 00 00 FF 0F 84 8B 01 00 00 53 55 56",
+      "abi": "void(void* drawlist,const Vec2* min,const Vec2* max,unsigned color,float rounding,int flags)",
+      "evidence": "RCX/RDX/R8/R9D then stack[+0x28]float rounding and[+0x30]int flags on callee entry; details in imgui_draw_api_20261118.json."
+    }
+  ],
+  "dx11_search": {
+    "scope": "Entire .text direct E8 calls targeting identified ImGui Render0x2766A0",
+    "matches": [
+      "0x340e9d"
+    ],
+    "conclusion": "No second direct Render call found. DX11 support not demonstrated; do not claim support or invent a hook address."
+  },
+  "popup_lifecycle": [
+    "After readiness gate, OpenPopup stable id once.",
+    "Each frame call SetNextWindowPos as desired then BeginPopupModal with same stable id.",
+    "If BeginPopupModal returns true: TextUnformatted/QR/widgets; close button calls CloseCurrentPopup and records dismissed; then EndPopup.",
+    "If BeginPopupModal returns false, do not EndPopup.",
+    "Original Render runs regardless."
+  ]
+}

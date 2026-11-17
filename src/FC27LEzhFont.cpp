@@ -505,6 +505,11 @@ static void PatchDeepUiLabels(HMODULE le)
         {0x48F073, 0x91C864, 0x0D, "大小###SIZE"},
         {0x48F46F, 0x91C870, 0x05, "文件大小：{} 字节", 0x48F47E, 19, false},
         {0x491E32, 0x91CA60, 0x15, "代码编辑器###Code Editor"},
+        {0x468165, 0x651E60, 0x0D, "左键单击编辑\n右键单击复制数值。", 0x0, 0, false},
+        {0x43DF09, 0x64F928, 0x05, "点击在浏览器中打开球员页面\n{}", 0x43DF1A, 39, false},
+        {0x3EEADD, 0x64CDB0, 0x1D, "{}的进球数", 0x3EEAEE, 18, false},
+        {0x4458F8, 0x650250, 0x05, "点击在浏览器中打开经理页面\n{}", 0x445907, 38, false},
+        {0x452E9A, 0x650B58, 0x05, "点击在浏览器中打开球队页面\n{}", 0x452EAB, 37, false},
     };
     PatchLabels(le, "deep UI", labels);
 }
@@ -550,6 +555,8 @@ static void PatchInlineUiLabels(HMODULE le)
     Log("inline UI labels PATCHED: %zu", _countof(labels));
 }
 
+#include "StartupNotice.h"
+
 static DWORD WINAPI Worker(LPVOID)
 {
     wchar_t path[MAX_PATH];
@@ -571,7 +578,8 @@ static DWORD WINAPI Worker(LPVOID)
     if (!le) { Log("!! FCLiveEditor.DLL not found"); return 0; }
     Log("FCLiveEditor.DLL @ %p (base 0x%llX)", le, (unsigned long long)le);
 
-    if (PatchFont(le))
+    const bool localized = PatchFont(le);
+    if (localized)
     {
         PatchSettingsLabels(le);
         PatchPlayerEditorLabels(le);
@@ -579,6 +587,7 @@ static DWORD WINAPI Worker(LPVOID)
         PatchRemainingUiLabels(le);
         PatchDeepUiLabels(le);
         PatchInlineUiLabels(le);
+        PatchStartupNotice(le);
     }
     Log("worker done");
     return 0;
@@ -591,7 +600,8 @@ BOOL WINAPI DllMain(HINSTANCE inst, DWORD reason, LPVOID)
         DisableThreadLibraryCalls(inst);
         GetModuleFileNameW(inst, g_dir, _countof(g_dir));
         if (wchar_t* s = wcsrchr(g_dir, L'\\')) *s = 0;
-        CreateThread(nullptr, 0, Worker, nullptr, 0, nullptr);
+        HANDLE worker = CreateThread(nullptr, 0, Worker, nullptr, 0, nullptr);
+        if (worker) CloseHandle(worker);
     }
     return TRUE;
 }

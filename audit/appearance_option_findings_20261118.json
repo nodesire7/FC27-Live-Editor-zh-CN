@@ -1,0 +1,669 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-18",
+  "scope": "appearance option names; static read-only analysis; no game data/config/UI changes",
+  "binaries": {
+    "FC27.exe": {
+      "sha256": "d81a7a7465718fddcf1eeffde1ee0f952cab69b2c4771ad2aca29c381cd9d5e9"
+    },
+    "FCLiveEditor.DLL": {
+      "sha256": "0bc6b95bf636c4242cd109ffae9bca04d6542d4b2b88cb3d96cdb3e91da5d66d"
+    }
+  },
+  "translations": {
+    "socklengthcode_0": "常规长度",
+    "socklengthcode_1": "短袜",
+    "socklengthcode_2": "高筒袜",
+    "socklengthcode_3": "踝袜（超低筒）",
+    "undershortstyle_0": "紧身短裤",
+    "undershortstyle_1": "紧身长裤"
+  },
+  "confirmed_evidence": [
+    {
+      "keys": [
+        "socklengthcode_0",
+        "socklengthcode_1",
+        "socklengthcode_2"
+      ],
+      "binary": "FC27.exe",
+      "rvas": [
+        "0x7b96a1a",
+        "0x7b96a23",
+        "0x7b96a3b",
+        "0x7b96a54"
+      ],
+      "observation": "YOUTH_APPEARANCE/SOCKHEIGHT_AVERAGE, SHORT, HIGH are paired with explicit IDs ebx=0, immediate1, immediate2 in (ID,weight) records."
+    },
+    {
+      "keys": [
+        "socklengthcode_0",
+        "socklengthcode_1",
+        "socklengthcode_2",
+        "socklengthcode_3"
+      ],
+      "binary": "FC27.exe",
+      "rvas": [
+        "0x7155521",
+        "0x7155557",
+        "0x7155575",
+        "0x7155593",
+        "0x7155695",
+        "0x715569f",
+        "0x71556a6",
+        "0x71556b1"
+      ],
+      "observation": "UI constructs labels SM_CUSTOM_SOCK_HEIGHT_AVERAGE, SHORT, HIGH, ULTRA_LOW into contiguous 24-byte strings; selector IDs explicitly 0,1,2,3. Current sock-height value indexes same vector at0x7155657..0x715565f. Independently agrees with youth generator for0..2."
+    },
+    {
+      "keys": [
+        "undershortstyle_0",
+        "undershortstyle_1"
+      ],
+      "binary": "FC27.exe",
+      "rvas": [
+        "0x7b96512",
+        "0x7b96546",
+        "0x7b96761",
+        "0x7b96768",
+        "0x7b96773",
+        "0x7b96780"
+      ],
+      "observation": "Function sets esi=0,r14d=1; UNDERSHORTSTYLE_UNDERSHORTS record gets esi and UNDERSHORTSTYLE_LEGGINGS gets r14d."
+    }
+  ],
+  "disassembly": {
+    "0x7b9650e": [
+      "0x7b9650e: mov rax, qword ptr [rcx + 0x30]",
+      "0x7b96512: xor esi, esi",
+      "0x7b96514: mov rdi, rdx",
+      "0x7b96517: mov rcx, qword ptr [rax + 0x1078]",
+      "0x7b9651e: mov r12, qword ptr [rcx]",
+      "0x7b96521: test r12, r12",
+      "0x7b96524: je 0x7b96cf5",
+      "0x7b9652a: mov r12, qword ptr [r12 + 0x18]",
+      "0x7b9652f: lea rdx, [rip + 0x34dd472]",
+      "0x7b96536: mov rcx, rdi",
+      "0x7b96539: mov qword ptr [rsp + 0x20], r12",
+      "0x7b9653e: mov dword ptr [rbp - 0x60], esi",
+      "0x7b96541: call 0xad8248",
+      "0x7b96546: lea r14d, [rsi + 1]",
+      "0x7b9654a: mov dword ptr [rbp - 0x5c], eax",
+      "0x7b9654d: lea rdx, [rip + 0x34dd42c]",
+      "0x7b96554: mov dword ptr [rbp - 0x58], r14d",
+      "0x7b96558: mov rcx, rdi",
+      "0x7b9655b: call 0xad8248",
+      "0x7b96560: lea r15d, [rsi + 2]",
+      "0x7b96564: mov dword ptr [rbp - 0x54], eax"
+    ],
+    "0x7b96761": [
+      "0x7b96761: lea rdx, [rip + 0x34dd038]",
+      "0x7b96768: mov dword ptr [rbp - 0x30], esi",
+      "0x7b9676b: mov rcx, rdi",
+      "0x7b9676e: call 0xad8248",
+      "0x7b96773: lea rdx, [rip + 0x34dcff6]",
+      "0x7b9677a: mov dword ptr [rbp - 0x2c], eax",
+      "0x7b9677d: mov rcx, rdi",
+      "0x7b96780: mov dword ptr [rbp - 0x28], r14d",
+      "0x7b96784: call 0xad8248",
+      "0x7b96789: mov dword ptr [rbp - 0x24], eax",
+      "0x7b9678c: lea rcx, [r12 + 0xa0]",
+      "0x7b96794: lea rax, [rbp - 0x30]",
+      "0x7b96798: mov qword ptr [rbp - 0x60], rax",
+      "0x7b9679c: lea rdx, [rbp - 0x60]",
+      "0x7b967a0: lea rax, [rbp - 0x20]",
+      "0x7b967a4: mov qword ptr [rbp - 0x58], rax",
+      "0x7b967a8: call 0x7b79dfc"
+    ],
+    "0x7b96a1a": [
+      "0x7b96a1a: xor ebx, ebx",
+      "0x7b96a1c: lea rdx, [rip + 0x34dc925]",
+      "0x7b96a23: mov dword ptr [rbp - 0x30], ebx",
+      "0x7b96a26: mov rcx, rdi",
+      "0x7b96a29: call 0xad8248",
+      "0x7b96a2e: lea rdx, [rip + 0x34dc8eb]",
+      "0x7b96a35: mov dword ptr [rbp - 0x2c], eax",
+      "0x7b96a38: mov rcx, rdi",
+      "0x7b96a3b: mov dword ptr [rbp - 0x28], 1",
+      "0x7b96a42: call 0xad8248",
+      "0x7b96a47: lea rdx, [rip + 0x34dcab2]",
+      "0x7b96a4e: mov dword ptr [rbp - 0x24], eax",
+      "0x7b96a51: mov rcx, rdi",
+      "0x7b96a54: mov dword ptr [rbp - 0x20], 2",
+      "0x7b96a5b: call 0xad8248",
+      "0x7b96a60: mov dword ptr [rbp - 0x1c], eax",
+      "0x7b96a63: lea rcx, [r12 + 0xc0]",
+      "0x7b96a6b: lea rax, [rbp - 0x30]",
+      "0x7b96a6f: mov qword ptr [rbp - 0x60], rax",
+      "0x7b96a73: lea rdx, [rbp - 0x60]",
+      "0x7b96a77: lea rax, [rbp - 0x18]",
+      "0x7b96a7b: mov qword ptr [rbp - 0x58], rax",
+      "0x7b96a7f: call 0x7b79dfc"
+    ],
+    "0x7155521": [
+      "0x7155521: lea rdx, [rip + 0x3e105a8]",
+      "0x7155528: mov qword ptr [rsp + 0x48], 0",
+      "0x7155531: lea r8, [rsp + 0x30]",
+      "0x7155536: mov qword ptr [rsp + 0x30], 0",
+      "0x715553f: lea rcx, [rsp + 0x70]",
+      "0x7155544: call 0x65d310",
+      "0x7155549: lea r8, [rsp + 0x30]",
+      "0x715554e: mov qword ptr [rsp + 0x30], 0",
+      "0x7155557: lea rdx, [rip + 0x3e10552]",
+      "0x715555e: lea rcx, [rbp - 0x78]",
+      "0x7155562: call 0x65d310",
+      "0x7155567: lea r8, [rsp + 0x30]",
+      "0x715556c: mov qword ptr [rsp + 0x30], 0",
+      "0x7155575: lea rdx, [rip + 0x3e10594]",
+      "0x715557c: lea rcx, [rbp - 0x60]",
+      "0x7155580: call 0x65d310",
+      "0x7155585: lea r8, [rsp + 0x30]",
+      "0x715558a: mov qword ptr [rsp + 0x30], 0",
+      "0x7155593: lea rdx, [rip + 0x3e10556]",
+      "0x715559a: lea rcx, [rbp - 0x48]",
+      "0x715559e: call 0x65d310"
+    ],
+    "0x7155635": [
+      "0x7155635: lea rdx, [rsp + 0x30]",
+      "0x715563a: movzx ecx, byte ptr [rax + 0x753]",
+      "0x7155641: mov dword ptr [rsp + 0x30], ecx",
+      "0x7155645: lea rcx, [rbp - 0x30]",
+      "0x7155649: call 0xb35c50",
+      "0x715564e: mov eax, dword ptr [rsp + 0x30]",
+      "0x7155652: mov rcx, qword ptr [rsp + 0x50]",
+      "0x7155657: lea rdx, [rax + rax*2]",
+      "0x715565b: lea rdx, [rcx + rdx*8]",
+      "0x715565f: call 0x2989a90",
+      "0x7155664: mov rdx, qword ptr [rsp + 0x50]",
+      "0x7155669: lea rcx, [rsp + 0x50]",
+      "0x715566e: mov r8, qword ptr [rsp + 0x58]",
+      "0x7155673: add rdx, 0x18",
+      "0x7155677: call 0x27b9620",
+      "0x715567c: jmp 0x71556b8",
+      "0x715567e: xor r14b, r14b",
+      "0x7155681: lea rcx, [rbp - 0x30]",
+      "0x7155685: mov edx, edi",
+      "0x7155687: call 0x12c4ab8",
+      "0x715568c: mov rax, qword ptr [rbp - 0x30]",
+      "0x7155690: mov edi, 1",
+      "0x7155695: mov dword ptr [rax], 0",
+      "0x715569b: mov rax, qword ptr [rbp - 0x30]",
+      "0x715569f: mov dword ptr [rax + 4], edi",
+      "0x71556a2: mov rax, qword ptr [rbp - 0x30]",
+      "0x71556a6: mov dword ptr [rax + 8], 2",
+      "0x71556ad: mov rax, qword ptr [rbp - 0x30]",
+      "0x71556b1: mov dword ptr [rax + 0xc], 3"
+    ]
+  },
+  "historical_candidates_NOT_confirmed_for_fc27": {
+    "socklengthcode_4": "Average no Shinpad",
+    "shortstyle_0": "GK Shorts",
+    "shortstyle_1": "GK Pants",
+    "facialhaircolor_0": "Black",
+    "facialhaircolor_1": "Blonde",
+    "facialhaircolor_2": "Dark Brown",
+    "facialhaircolor_3": "Medium Brown",
+    "facialhaircolor_4": "Red",
+    "haircolor_0": "Black",
+    "haircolor_1": "Blonde",
+    "haircolor_2": "Dirty Blonde",
+    "haircolor_3": "Dark Brown",
+    "haircolor_4": "Light Blonde",
+    "haircolor_5": "Light Brown",
+    "haircolor_6": "Medium Brown",
+    "haircolor_7": "Red",
+    "haircolor_8": "White",
+    "haircolor_9": "Silver",
+    "haircolor_10": "Green",
+    "haircolor_11": "Blue",
+    "haircolor_12": "Ginger",
+    "haircolor_13": "Dark Red",
+    "haircolor_14": "Pink",
+    "eyecolor_1": "Blue",
+    "eyecolor_2": "Light Blue",
+    "eyecolor_3": "Brown",
+    "eyecolor_4": "Light Brown",
+    "eyecolor_5": "Hazel",
+    "eyecolor_6": "Green",
+    "eyecolor_7": "Light Green",
+    "eyecolor_8": "Medium Blue",
+    "eyecolor_9": "Dark Brown",
+    "eyecolor_10": "Saturated Green",
+    "hasseasonaljersey_0": "Short",
+    "hasseasonaljersey_1": "Long",
+    "hasseasonaljersey_2": "Long and Turtleneck",
+    "hasseasonaljersey_3": "Seasonal Undershirt",
+    "hasseasonaljersey_4": "Seasonal Undershirt and Turtleneck",
+    "headclasscode_0": "Specific",
+    "headclasscode_1": "Generic"
+  },
+  "unresolved": {
+    "skinmakeup": {
+      "existing_generated_range": [
+        0,
+        20
+      ],
+      "unresolved_keys": [
+        "skinmakeup_0",
+        "skinmakeup_1",
+        "skinmakeup_2",
+        "skinmakeup_3",
+        "skinmakeup_4",
+        "skinmakeup_5",
+        "skinmakeup_6",
+        "skinmakeup_7",
+        "skinmakeup_8",
+        "skinmakeup_9",
+        "skinmakeup_10",
+        "skinmakeup_11",
+        "skinmakeup_12",
+        "skinmakeup_13",
+        "skinmakeup_14",
+        "skinmakeup_15",
+        "skinmakeup_16",
+        "skinmakeup_17",
+        "skinmakeup_18",
+        "skinmakeup_19",
+        "skinmakeup_20"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "eyedetail": {
+      "existing_generated_range": [
+        0,
+        20
+      ],
+      "unresolved_keys": [
+        "eyedetail_0",
+        "eyedetail_1",
+        "eyedetail_2",
+        "eyedetail_3",
+        "eyedetail_4",
+        "eyedetail_5",
+        "eyedetail_6",
+        "eyedetail_7",
+        "eyedetail_8",
+        "eyedetail_9",
+        "eyedetail_10",
+        "eyedetail_11",
+        "eyedetail_12",
+        "eyedetail_13",
+        "eyedetail_14",
+        "eyedetail_15",
+        "eyedetail_16",
+        "eyedetail_17",
+        "eyedetail_18",
+        "eyedetail_19",
+        "eyedetail_20"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "skincomplexion": {
+      "existing_generated_range": [
+        1,
+        11
+      ],
+      "unresolved_keys": [
+        "skincomplexion_1",
+        "skincomplexion_2",
+        "skincomplexion_3",
+        "skincomplexion_4",
+        "skincomplexion_5",
+        "skincomplexion_6",
+        "skincomplexion_7",
+        "skincomplexion_8",
+        "skincomplexion_9",
+        "skincomplexion_10",
+        "skincomplexion_11"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "lipcolor": {
+      "existing_generated_range": [
+        0,
+        20
+      ],
+      "unresolved_keys": [
+        "lipcolor_0",
+        "lipcolor_1",
+        "lipcolor_2",
+        "lipcolor_3",
+        "lipcolor_4",
+        "lipcolor_5",
+        "lipcolor_6",
+        "lipcolor_7",
+        "lipcolor_8",
+        "lipcolor_9",
+        "lipcolor_10",
+        "lipcolor_11",
+        "lipcolor_12",
+        "lipcolor_13",
+        "lipcolor_14",
+        "lipcolor_15",
+        "lipcolor_16",
+        "lipcolor_17",
+        "lipcolor_18",
+        "lipcolor_19",
+        "lipcolor_20"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "haircolor": {
+      "existing_generated_range": [
+        0,
+        50
+      ],
+      "unresolved_keys": [
+        "haircolor_0",
+        "haircolor_1",
+        "haircolor_2",
+        "haircolor_3",
+        "haircolor_4",
+        "haircolor_5",
+        "haircolor_6",
+        "haircolor_7",
+        "haircolor_8",
+        "haircolor_9",
+        "haircolor_10",
+        "haircolor_11",
+        "haircolor_12",
+        "haircolor_13",
+        "haircolor_14",
+        "haircolor_15",
+        "haircolor_16",
+        "haircolor_17",
+        "haircolor_18",
+        "haircolor_19",
+        "haircolor_20",
+        "haircolor_21",
+        "haircolor_22",
+        "haircolor_23",
+        "haircolor_24",
+        "haircolor_25",
+        "haircolor_26",
+        "haircolor_27",
+        "haircolor_28",
+        "haircolor_29",
+        "haircolor_30",
+        "haircolor_31",
+        "haircolor_32",
+        "haircolor_33",
+        "haircolor_34",
+        "haircolor_35",
+        "haircolor_36",
+        "haircolor_37",
+        "haircolor_38",
+        "haircolor_39",
+        "haircolor_40",
+        "haircolor_41",
+        "haircolor_42",
+        "haircolor_43",
+        "haircolor_44",
+        "haircolor_45",
+        "haircolor_46",
+        "haircolor_47",
+        "haircolor_48",
+        "haircolor_49",
+        "haircolor_50"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "facialhaircolor": {
+      "existing_generated_range": [
+        0,
+        50
+      ],
+      "unresolved_keys": [
+        "facialhaircolor_0",
+        "facialhaircolor_1",
+        "facialhaircolor_2",
+        "facialhaircolor_3",
+        "facialhaircolor_4",
+        "facialhaircolor_5",
+        "facialhaircolor_6",
+        "facialhaircolor_7",
+        "facialhaircolor_8",
+        "facialhaircolor_9",
+        "facialhaircolor_10",
+        "facialhaircolor_11",
+        "facialhaircolor_12",
+        "facialhaircolor_13",
+        "facialhaircolor_14",
+        "facialhaircolor_15",
+        "facialhaircolor_16",
+        "facialhaircolor_17",
+        "facialhaircolor_18",
+        "facialhaircolor_19",
+        "facialhaircolor_20",
+        "facialhaircolor_21",
+        "facialhaircolor_22",
+        "facialhaircolor_23",
+        "facialhaircolor_24",
+        "facialhaircolor_25",
+        "facialhaircolor_26",
+        "facialhaircolor_27",
+        "facialhaircolor_28",
+        "facialhaircolor_29",
+        "facialhaircolor_30",
+        "facialhaircolor_31",
+        "facialhaircolor_32",
+        "facialhaircolor_33",
+        "facialhaircolor_34",
+        "facialhaircolor_35",
+        "facialhaircolor_36",
+        "facialhaircolor_37",
+        "facialhaircolor_38",
+        "facialhaircolor_39",
+        "facialhaircolor_40",
+        "facialhaircolor_41",
+        "facialhaircolor_42",
+        "facialhaircolor_43",
+        "facialhaircolor_44",
+        "facialhaircolor_45",
+        "facialhaircolor_46",
+        "facialhaircolor_47",
+        "facialhaircolor_48",
+        "facialhaircolor_49",
+        "facialhaircolor_50"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "eyecolor": {
+      "existing_generated_range": [
+        1,
+        10
+      ],
+      "unresolved_keys": [
+        "eyecolor_1",
+        "eyecolor_2",
+        "eyecolor_3",
+        "eyecolor_4",
+        "eyecolor_5",
+        "eyecolor_6",
+        "eyecolor_7",
+        "eyecolor_8",
+        "eyecolor_9",
+        "eyecolor_10"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "accessorycolourcode": {
+      "existing_generated_range": [
+        0,
+        12
+      ],
+      "unresolved_keys": [
+        "accessorycolourcode_0",
+        "accessorycolourcode_1",
+        "accessorycolourcode_2",
+        "accessorycolourcode_3",
+        "accessorycolourcode_4",
+        "accessorycolourcode_5",
+        "accessorycolourcode_6",
+        "accessorycolourcode_7",
+        "accessorycolourcode_8",
+        "accessorycolourcode_9",
+        "accessorycolourcode_10",
+        "accessorycolourcode_11",
+        "accessorycolourcode_12",
+        "accessorycolourcode_99"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "shoecolorcode": {
+      "existing_generated_range": [
+        0,
+        31
+      ],
+      "unresolved_keys": [
+        "shoecolorcode_0",
+        "shoecolorcode_1",
+        "shoecolorcode_2",
+        "shoecolorcode_3",
+        "shoecolorcode_4",
+        "shoecolorcode_5",
+        "shoecolorcode_6",
+        "shoecolorcode_7",
+        "shoecolorcode_8",
+        "shoecolorcode_9",
+        "shoecolorcode_10",
+        "shoecolorcode_11",
+        "shoecolorcode_12",
+        "shoecolorcode_13",
+        "shoecolorcode_14",
+        "shoecolorcode_15",
+        "shoecolorcode_16",
+        "shoecolorcode_17",
+        "shoecolorcode_18",
+        "shoecolorcode_19",
+        "shoecolorcode_20",
+        "shoecolorcode_21",
+        "shoecolorcode_22",
+        "shoecolorcode_23",
+        "shoecolorcode_24",
+        "shoecolorcode_25",
+        "shoecolorcode_26",
+        "shoecolorcode_27",
+        "shoecolorcode_28",
+        "shoecolorcode_29",
+        "shoecolorcode_30",
+        "shoecolorcode_31"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "bodytype": {
+      "existing_generated_range": [
+        0,
+        9
+      ],
+      "unresolved_keys": [
+        "bodytype_0",
+        "bodytype_1",
+        "bodytype_2",
+        "bodytype_3",
+        "bodytype_4",
+        "bodytype_5",
+        "bodytype_6",
+        "bodytype_7",
+        "bodytype_8",
+        "bodytype_9"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "headclasscode": {
+      "existing_generated_range": [
+        0,
+        1
+      ],
+      "unresolved_keys": [
+        "headclasscode_0",
+        "headclasscode_1"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "muscularitycode": {
+      "existing_generated_range": [
+        0,
+        1
+      ],
+      "unresolved_keys": [
+        "muscularitycode_0",
+        "muscularitycode_1"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "socklengthcode": {
+      "existing_generated_range": [
+        0,
+        7
+      ],
+      "unresolved_keys": [
+        "socklengthcode_4",
+        "socklengthcode_5",
+        "socklengthcode_6",
+        "socklengthcode_7"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "sockstylecode": {
+      "existing_generated_range": [
+        0,
+        8
+      ],
+      "unresolved_keys": [
+        "sockstylecode_0",
+        "sockstylecode_1",
+        "sockstylecode_2",
+        "sockstylecode_3",
+        "sockstylecode_4",
+        "sockstylecode_5",
+        "sockstylecode_6",
+        "sockstylecode_7",
+        "sockstylecode_8"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "hasseasonaljersey": {
+      "existing_generated_range": [
+        0,
+        7
+      ],
+      "unresolved_keys": [
+        "hasseasonaljersey_0",
+        "hasseasonaljersey_1",
+        "hasseasonaljersey_2",
+        "hasseasonaljersey_3",
+        "hasseasonaljersey_4",
+        "hasseasonaljersey_5",
+        "hasseasonaljersey_6",
+        "hasseasonaljersey_7"
+      ],
+      "status": "delegated to enum_names; same-version YOUTH_APPEARANCE constructor evidence supplied separately"
+    },
+    "shortstyle": {
+      "existing_generated_range": [
+        0,
+        1
+      ],
+      "unresolved_keys": [
+        "shortstyle_0",
+        "shortstyle_1"
+      ],
+      "status": "same-version name/value mapping not established"
+    },
+    "undershortstyle": {
+      "existing_generated_range": [
+        0,
+        1
+      ],
+      "unresolved_keys": [],
+      "status": "same-version name/value mapping not established"
+    }
+  },
+  "limitations": [
+    "FC27.exe 33,532 candidate reflection records have no direct enum names for requested appearance database fields; many matches are unrelated renderer enums or avatar asset IDs.",
+    "FC27.exe raw ASCII strings were searched for field names and named hair/eye colors; only field/property metadata was found for color families.",
+    "DLL dynamic selector constructors establish numeric keys and bounds, not display meaning of asset or palette IDs. For example skincomplexion1..11, lipcolor0..20, sockstyle0..8, accessorycolour0..12+99, haircolor0..50.",
+    "FIFA23 LE official English reference contains older color/appearance mappings but does not by itself prove current FC27 asset ID continuity. These candidates must not be presented as same-version verified.",
+    "Game CAS/TOC assets were only inventoried, not decoded. Absence from scanned executable strings does not prove absence from packed game resources."
+  ]
+}

@@ -37,6 +37,11 @@ int wmain(int argc, wchar_t** argv) {
         if (length && n != expected) { printf("Length mismatch at %llx\n", (unsigned long long)length); return false; }
         return true;
     };
+    if (!check(0x468165, "左键单击编辑\n右键单击复制数值。", 0x0, 46)) return 20;
+    if (!check(0x43DF09, "点击在浏览器中打开球员页面\n{}", 0x43DF1A, 42)) return 20;
+    if (!check(0x3EEADD, "{}的进球数", 0x3EEAEE, 14)) return 20;
+    if (!check(0x4458F8, "点击在浏览器中打开经理页面\n{}", 0x445907, 42)) return 20;
+    if (!check(0x452E9A, "点击在浏览器中打开球队页面\n{}", 0x452EAB, 42)) return 20;
     if (!check(0x4AB68A, "{}档背景颜色", 0x0, 17)) return 20;
     if (!check(0x4AB6D7, "{} 档文字颜色", 0x0, 18)) return 20;
     if (!check(0x4AB724, "{} 档能力值最低值", 0x0, 24)) return 20;
@@ -201,6 +206,18 @@ int wmain(int argc, wchar_t** argv) {
     if (strcmp(reinterpret_cast<const char*>(image + 0x64EC44), "新建")) return 22;
     if (strcmp(reinterpret_cast<const char*>(image + 0x64EE38), "选择 LUA 文件")) return 22;
     if (strcmp(reinterpret_cast<const char*>(image + 0x64EE70), "运行 LUA ")) return 22;
-    printf("Verified 151 display references, explicit UTF-8 lengths, font operands, 8 inline strings, and mismatch rejection.\n");
+    uint8_t callBefore[5]; memcpy(callBefore, image + 0x340E9D, 5);
+    const uint8_t readyBefore = image[0xA51A5D];
+    image[0x26AB30] ^= 1;
+    if (PatchStartupNotice(le) || memcmp(callBefore, image + 0x340E9D, 5)) return 23;
+    image[0x26AB30] ^= 1;
+    if (!PatchStartupNotice(le)) return 24;
+    int32_t noticeDisp; memcpy(&noticeDisp, image + 0x340E9E, 4);
+    const uint8_t* bridge = image + 0x340EA2 + noticeDisp;
+    if (bridge[0] != 0xFF || bridge[1] != 0x25) return 25;
+    void (*noticeTarget)(); memcpy(&noticeTarget, bridge + 6, sizeof(noticeTarget));
+    if (noticeTarget != &NoticeRender || g_originalRender != reinterpret_cast<void(*)()>(image + 0x2766A0) ||
+        image[0xA51A5D] != readyBefore) return 26;
+    printf("Verified 156 display references, UTF-8 lengths, font operands, 8 inline strings, popup render bridge, and mismatch rejection.\n");
     return 0;
 }

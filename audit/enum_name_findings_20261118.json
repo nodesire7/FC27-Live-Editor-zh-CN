@@ -1,0 +1,1527 @@
+{
+  "date": "2026-11-18",
+  "scope": "static exact enum names; no source/deployment edits",
+  "confirmed_count": 109,
+  "confirmed": [
+    {
+      "key": "coaches_tab_0",
+      "translation": "门将教练组",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "CoachMasteryDepartment_Gk",
+        "value": 0,
+        "entry_rva": "0xecf2eb0",
+        "string_rva": "0xab457c8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x44B6BE uses coaches_tab_{}, loop edi=0..3 at0x44B8FD"
+      },
+      "notes": ""
+    },
+    {
+      "key": "coaches_tab_1",
+      "translation": "防守教练组",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "CoachMasteryDepartment_Def",
+        "value": 1,
+        "entry_rva": "0xecf2ed0",
+        "string_rva": "0xab45778",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x44B6BE uses coaches_tab_{}, loop edi=0..3 at0x44B8FD"
+      },
+      "notes": ""
+    },
+    {
+      "key": "coaches_tab_2",
+      "translation": "中场教练组",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "CoachMasteryDepartment_Mid",
+        "value": 2,
+        "entry_rva": "0xecf2ef0",
+        "string_rva": "0xab45798",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x44B6BE uses coaches_tab_{}, loop edi=0..3 at0x44B8FD"
+      },
+      "notes": ""
+    },
+    {
+      "key": "coaches_tab_3",
+      "translation": "进攻教练组",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "CoachMasteryDepartment_Att",
+        "value": 3,
+        "entry_rva": "0xecf2f10",
+        "string_rva": "0xab45db8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x44B6BE uses coaches_tab_{}, loop edi=0..3 at0x44B8FD"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_level_1",
+      "translation": "初级",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "TacticalMastery_Novice",
+        "value": 1,
+        "entry_rva": "0xecf3170",
+        "string_rva": "0xab45688",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9863, loop1..3"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_level_2",
+      "translation": "熟练",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "TacticalMastery_Competent",
+        "value": 2,
+        "entry_rva": "0xecf3190",
+        "string_rva": "0xab456a0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9863, loop1..3"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_level_3",
+      "translation": "大师",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "TacticalMastery_Master",
+        "value": 3,
+        "entry_rva": "0xecf31b0",
+        "string_rva": "0xab45818",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9863, loop1..3"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_id_1",
+      "translation": "标准",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "Playstyle_Standard",
+        "value": 1,
+        "entry_rva": "0xecd40d0",
+        "string_rva": "0xab45d18",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9763, loop1..7"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_id_2",
+      "translation": "边路进攻",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "Playstyle_WingMerchant",
+        "value": 2,
+        "entry_rva": "0xecd40f0",
+        "string_rva": "0xab45d30",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9763, loop1..7"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_id_3",
+      "translation": "控球传递",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "Playstyle_PosessionPassing",
+        "value": 3,
+        "entry_rva": "0xecd4110",
+        "string_rva": "0xab45e80",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9763, loop1..7"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_id_4",
+      "translation": "高位逼抢",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "Playstyle_Gegenpressing",
+        "value": 4,
+        "entry_rva": "0xecd4130",
+        "string_rva": "0xab45ea0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9763, loop1..7"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_id_5",
+      "translation": "严密防守",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "Playstyle_UltraDefensive",
+        "value": 5,
+        "entry_rva": "0xecd4150",
+        "string_rva": "0xab45e48",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9763, loop1..7"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_id_6",
+      "translation": "防守反击",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "Playstyle_CounterAttack",
+        "value": 6,
+        "entry_rva": "0xecd4170",
+        "string_rva": "0xab45e68",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9763, loop1..7"
+      },
+      "notes": ""
+    },
+    {
+      "key": "tactical_knowledge_skill_id_7",
+      "translation": "长传冲吊",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "Playstyle_KickAndRush",
+        "value": 7,
+        "entry_rva": "0xecd4190",
+        "string_rva": "0xab45e20",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E9763, loop1..7"
+      },
+      "notes": ""
+    },
+    {
+      "key": "player_contract_role_1",
+      "translation": "关键球员",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0xDE22A0..0xDE2769",
+        "assignment_rva": "0xDE244E",
+        "localization_key": "CM_CW_Role_Crucial_upper",
+        "value": 1,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E40D1 loops player_contract_role_0..5; separate -1 unknown option"
+      },
+      "notes": ""
+    },
+    {
+      "key": "player_contract_role_2",
+      "translation": "重要球员",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0xDE22A0..0xDE2769",
+        "assignment_rva": "0xDE2461",
+        "localization_key": "CM_CW_Role_Important_upper",
+        "value": 2,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E40D1 loops player_contract_role_0..5; separate -1 unknown option"
+      },
+      "notes": ""
+    },
+    {
+      "key": "player_contract_role_3",
+      "translation": "轮换球员",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0xDE22A0..0xDE2769",
+        "assignment_rva": "0xDE2474",
+        "localization_key": "CM_CW_Role_Rotation_upper",
+        "value": 3,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E40D1 loops player_contract_role_0..5; separate -1 unknown option"
+      },
+      "notes": ""
+    },
+    {
+      "key": "player_contract_role_4",
+      "translation": "偶尔出场",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0xDE22A0..0xDE2769",
+        "assignment_rva": "0xDE2488",
+        "localization_key": "CM_CW_Role_Sporadic_upper",
+        "value": 4,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E40D1 loops player_contract_role_0..5; separate -1 unknown option"
+      },
+      "notes": ""
+    },
+    {
+      "key": "player_contract_role_5",
+      "translation": "未来之星",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0xDE22A0..0xDE2769",
+        "assignment_rva": "0xDE24AF",
+        "localization_key": "CM_CW_Role_Future_upper",
+        "value": 5,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E40D1 loops player_contract_role_0..5; separate -1 unknown option"
+      },
+      "notes": ""
+    },
+    {
+      "key": "job_security_status_0",
+      "translation": "极不稳定",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0x7F95B90",
+        "selection_rva": "0x7F95BF7",
+        "localization_key": "CM_MM_JOB_SECURITY_VERY_INSECURE",
+        "string_rva": "0xB0A8B68",
+        "value": 0,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E2168..0x2E223A explicit0..3"
+      },
+      "notes": "Function places four labels at rsp+0/8/16/24 and directly indexes by edx."
+    },
+    {
+      "key": "job_security_status_1",
+      "translation": "不稳定",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0x7F95B90",
+        "selection_rva": "0x7F95BF7",
+        "localization_key": "CM_MM_JOB_SECURITY_INSECURE",
+        "string_rva": "0xB0A8B08",
+        "value": 1,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E2168..0x2E223A explicit0..3"
+      },
+      "notes": "Function places four labels at rsp+0/8/16/24 and directly indexes by edx."
+    },
+    {
+      "key": "job_security_status_2",
+      "translation": "尚可",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0x7F95B90",
+        "selection_rva": "0x7F95BF7",
+        "localization_key": "CM_MM_JOB_SECURITY_OKAY",
+        "string_rva": "0xA83B538",
+        "value": 2,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E2168..0x2E223A explicit0..3"
+      },
+      "notes": "Function places four labels at rsp+0/8/16/24 and directly indexes by edx."
+    },
+    {
+      "key": "job_security_status_3",
+      "translation": "稳固",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0x7F95B90",
+        "selection_rva": "0x7F95BF7",
+        "localization_key": "CM_MM_JOB_SECURITY_SAFE",
+        "string_rva": "0xB0A8B28",
+        "value": 3,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E2168..0x2E223A explicit0..3"
+      },
+      "notes": "Function places four labels at rsp+0/8/16/24 and directly indexes by edx."
+    },
+    {
+      "key": "pap_role_0",
+      "translation": "预备队",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0x7F93C4C..0x7F93E72",
+        "branch_rva": "0x7F93D4A..0x7F93D76",
+        "localization_key": "CM_TeamStatus_RESERVE",
+        "value": 0,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E2499..0x2E256B explicit0..3"
+      },
+      "notes": "1 and2 both map to the exact same game label; internal early/late substitute ordering not yet confirmed, so no speculative distinction."
+    },
+    {
+      "key": "pap_role_1",
+      "translation": "替补",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0x7F93C4C..0x7F93E72",
+        "branch_rva": "0x7F93D4A..0x7F93D76",
+        "localization_key": "CM_TeamStatus_SUBSTITUTE",
+        "value": 1,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E2499..0x2E256B explicit0..3"
+      },
+      "notes": "1 and2 both map to the exact same game label; internal early/late substitute ordering not yet confirmed, so no speculative distinction."
+    },
+    {
+      "key": "pap_role_2",
+      "translation": "替补",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0x7F93C4C..0x7F93E72",
+        "branch_rva": "0x7F93D4A..0x7F93D76",
+        "localization_key": "CM_TeamStatus_SUBSTITUTE",
+        "value": 2,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E2499..0x2E256B explicit0..3"
+      },
+      "notes": "1 and2 both map to the exact same game label; internal early/late substitute ordering not yet confirmed, so no speculative distinction."
+    },
+    {
+      "key": "pap_role_3",
+      "translation": "首发阵容",
+      "evidence": {
+        "file": "FC27.exe",
+        "function_rva": "0x7F93C4C..0x7F93E72",
+        "branch_rva": "0x7F93D4A..0x7F93D76",
+        "localization_key": "CM_TeamStatus_FIRST_XI",
+        "value": 3,
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E2499..0x2E256B explicit0..3"
+      },
+      "notes": "1 and2 both map to the exact same game label; internal early/late substitute ordering not yet confirmed, so no speculative distinction."
+    },
+    {
+      "key": "injuryname_1",
+      "translation": "小腿肌肉拉伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_PulledCalf",
+        "value": 1,
+        "entry_rva": "0xec75730",
+        "string_rva": "0xab41958",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_2",
+      "translation": "股四头肌拉伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_PulledQuad",
+        "value": 2,
+        "entry_rva": "0xec75750",
+        "string_rva": "0xab41978",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_3",
+      "translation": "腘绳肌拉伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_PulledHam",
+        "value": 3,
+        "entry_rva": "0xec75770",
+        "string_rva": "0xab41918",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_4",
+      "translation": "腹股沟拉伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_PulledGroin",
+        "value": 4,
+        "entry_rva": "0xec75790",
+        "string_rva": "0xab41938",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_5",
+      "translation": "髋屈肌拉伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_PulledHipFlexor",
+        "value": 5,
+        "entry_rva": "0xec757b0",
+        "string_rva": "0xab418d0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_6",
+      "translation": "小腿肌肉撕裂",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_TornCalf",
+        "value": 6,
+        "entry_rva": "0xec757d0",
+        "string_rva": "0xab418f8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_7",
+      "translation": "股四头肌撕裂",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_TornQuad",
+        "value": 7,
+        "entry_rva": "0xec757f0",
+        "string_rva": "0xab41890",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_8",
+      "translation": "腘绳肌撕裂",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_TornHam",
+        "value": 8,
+        "entry_rva": "0xec75810",
+        "string_rva": "0xab418b0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_9",
+      "translation": "腹股沟撕裂",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_TornGroin",
+        "value": 9,
+        "entry_rva": "0xec75830",
+        "string_rva": "0xab41a60",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_10",
+      "translation": "髋屈肌撕裂",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_TornHipFlexor",
+        "value": 10,
+        "entry_rva": "0xec75850",
+        "string_rva": "0xab41a80",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_11",
+      "translation": "小腿肌肉挫伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_CalfCharlie",
+        "value": 11,
+        "entry_rva": "0xec75870",
+        "string_rva": "0xab41a20",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_12",
+      "translation": "脑震荡",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_Concussion",
+        "value": 12,
+        "entry_rva": "0xec75890",
+        "string_rva": "0xab41a40",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_13",
+      "translation": "头部割伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_HeadCuts",
+        "value": 13,
+        "entry_rva": "0xec758b0",
+        "string_rva": "0xab419e0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_14",
+      "translation": "股四头肌挫伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_QuadCharlie",
+        "value": 14,
+        "entry_rva": "0xec758d0",
+        "string_rva": "0xab41a00",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_15",
+      "translation": "脚趾骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenToe",
+        "value": 15,
+        "entry_rva": "0xec758f0",
+        "string_rva": "0xab41998",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_16",
+      "translation": "跖骨骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenMetatarsal",
+        "value": 16,
+        "entry_rva": "0xec75910",
+        "string_rva": "0xab419b8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_17",
+      "translation": "脚踝骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenAnkle",
+        "value": 17,
+        "entry_rva": "0xec75930",
+        "string_rva": "0xab41b88",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_18",
+      "translation": "胫腓骨骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenTibiaFibula",
+        "value": 18,
+        "entry_rva": "0xec75950",
+        "string_rva": "0xab41ba8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_19",
+      "translation": "胫腓骨挫伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BruisedTibiaFibula",
+        "value": 19,
+        "entry_rva": "0xec75970",
+        "string_rva": "0xab41b38",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_20",
+      "translation": "股骨挫伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_FemurContusion",
+        "value": 20,
+        "entry_rva": "0xec75990",
+        "string_rva": "0xab41b60",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_21",
+      "translation": "肋骨骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenRib",
+        "value": 21,
+        "entry_rva": "0xec759b0",
+        "string_rva": "0xab41af8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_22",
+      "translation": "肋骨挫伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BruisedRib",
+        "value": 22,
+        "entry_rva": "0xec759d0",
+        "string_rva": "0xab41b18",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_23",
+      "translation": "尾骨挫伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BruisedTailbone",
+        "value": 23,
+        "entry_rva": "0xec759f0",
+        "string_rva": "0xab41aa8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_24",
+      "translation": "尾骨骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenTailbone",
+        "value": 24,
+        "entry_rva": "0xec75a10",
+        "string_rva": "0xab41ad0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_25",
+      "translation": "锁骨骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenCollarbone",
+        "value": 25,
+        "entry_rva": "0xec75a30",
+        "string_rva": "0xab41c88",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_26",
+      "translation": "肩部挫伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BruisedShoulder",
+        "value": 26,
+        "entry_rva": "0xec75a50",
+        "string_rva": "0xab41cb0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_27",
+      "translation": "前交叉韧带损伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_ACL",
+        "value": 27,
+        "entry_rva": "0xec75a70",
+        "string_rva": "0xab41c58",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_28",
+      "translation": "外侧副韧带损伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_LCL",
+        "value": 28,
+        "entry_rva": "0xec75a90",
+        "string_rva": "0xab41c70",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_29",
+      "translation": "内侧副韧带损伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_MCL",
+        "value": 29,
+        "entry_rva": "0xec75ab0",
+        "string_rva": "0xab41c20",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_30",
+      "translation": "膝关节扭伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_SprainedKnee",
+        "value": 30,
+        "entry_rva": "0xec75ad0",
+        "string_rva": "0xab41c38",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_31",
+      "translation": "膝关节过伸损伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_HyperExtendedKnee",
+        "value": 31,
+        "entry_rva": "0xec75af0",
+        "string_rva": "0xab41bd0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_32",
+      "translation": "肩关节脱位",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_DislocatedShoulder",
+        "value": 32,
+        "entry_rva": "0xec75b10",
+        "string_rva": "0xab41bf8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_33",
+      "translation": "肘部骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenElbow",
+        "value": 33,
+        "entry_rva": "0xec75b30",
+        "string_rva": "0xab44898",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_34",
+      "translation": "肘部挫伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BruisedElbow",
+        "value": 34,
+        "entry_rva": "0xec75b50",
+        "string_rva": "0xab448b8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_35",
+      "translation": "脚踝扭伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_SprainedAnkle",
+        "value": 35,
+        "entry_rva": "0xec75b70",
+        "string_rva": "0xab44848",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_36",
+      "translation": "腹肌拉伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_AbdominalStrain",
+        "value": 36,
+        "entry_rva": "0xec75b90",
+        "string_rva": "0xab44870",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_37",
+      "translation": "跟腱拉伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_AchillesStrain",
+        "value": 37,
+        "entry_rva": "0xec75bb0",
+        "string_rva": "0xab447f0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_38",
+      "translation": "跟腱断裂",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_AchillesTendonRupture",
+        "value": 38,
+        "entry_rva": "0xec75bd0",
+        "string_rva": "0xab44818",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_39",
+      "translation": "脚踝受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_AnkleInjury",
+        "value": 39,
+        "entry_rva": "0xec75bf0",
+        "string_rva": "0xab447b0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_40",
+      "translation": "阑尾炎",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_Appendicitis",
+        "value": 40,
+        "entry_rva": "0xec75c10",
+        "string_rva": "0xab447d0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_41",
+      "translation": "手臂受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_ArmInjury",
+        "value": 41,
+        "entry_rva": "0xec75c30",
+        "string_rva": "0xab44998",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_42",
+      "translation": "背部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BackInjury",
+        "value": 42,
+        "entry_rva": "0xec75c50",
+        "string_rva": "0xab449b8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_43",
+      "translation": "手臂骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenArm",
+        "value": 43,
+        "entry_rva": "0xec75c70",
+        "string_rva": "0xab44958",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_44",
+      "translation": "手指骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenFinger",
+        "value": 44,
+        "entry_rva": "0xec75c90",
+        "string_rva": "0xab44978",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_45",
+      "translation": "足部骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenFoot",
+        "value": 45,
+        "entry_rva": "0xec75cb0",
+        "string_rva": "0xab44918",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_46",
+      "translation": "手部骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenHand",
+        "value": 46,
+        "entry_rva": "0xec75cd0",
+        "string_rva": "0xab44938",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_47",
+      "translation": "腿部骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenLeg",
+        "value": 47,
+        "entry_rva": "0xec75cf0",
+        "string_rva": "0xab448d8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_48",
+      "translation": "鼻骨骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_BrokenNose",
+        "value": 48,
+        "entry_rva": "0xec75d10",
+        "string_rva": "0xab448f8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_49",
+      "translation": "胫部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_ShinInjury",
+        "value": 49,
+        "entry_rva": "0xec75d30",
+        "string_rva": "0xab44aa0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_50",
+      "translation": "胸部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_ChestInjury",
+        "value": 50,
+        "entry_rva": "0xec75d50",
+        "string_rva": "0xab44ac0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_51",
+      "translation": "腿部肌肉挫伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_DeadLeg",
+        "value": 51,
+        "entry_rva": "0xec75d70",
+        "string_rva": "0xab44a60",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_52",
+      "translation": "眼部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_EyeInjury",
+        "value": 52,
+        "entry_rva": "0xec75d90",
+        "string_rva": "0xab44a80",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_53",
+      "translation": "面部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_FacialInjury",
+        "value": 53,
+        "entry_rva": "0xec75db0",
+        "string_rva": "0xab44a20",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_54",
+      "translation": "足部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_FootInjury",
+        "value": 54,
+        "entry_rva": "0xec75dd0",
+        "string_rva": "0xab44a40",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_55",
+      "translation": "颧骨骨折",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_FracturedCheekbone",
+        "value": 55,
+        "entry_rva": "0xec75df0",
+        "string_rva": "0xab449d8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_56",
+      "translation": "腿部割伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_GashedLeg",
+        "value": 56,
+        "entry_rva": "0xec75e10",
+        "string_rva": "0xab44a00",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_57",
+      "translation": "臀肌拉伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_GlutealStrain",
+        "value": 57,
+        "entry_rva": "0xec75e30",
+        "string_rva": "0xab44ba0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_58",
+      "translation": "腹股沟受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_GroinInjury",
+        "value": 58,
+        "entry_rva": "0xec75e50",
+        "string_rva": "0xab44bc8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_59",
+      "translation": "腘绳肌损伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_Hamstring",
+        "value": 59,
+        "entry_rva": "0xec75e70",
+        "string_rva": "0xab44b60",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_60",
+      "translation": "手部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_HandInjury",
+        "value": 60,
+        "entry_rva": "0xec75e90",
+        "string_rva": "0xab44b80",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_61",
+      "translation": "头部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_HeadInjury",
+        "value": 61,
+        "entry_rva": "0xec75eb0",
+        "string_rva": "0xab44b20",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_62",
+      "translation": "脚跟受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_HeelInjury",
+        "value": 62,
+        "entry_rva": "0xec75ed0",
+        "string_rva": "0xab44b40",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_63",
+      "translation": "髋部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_HipInjury",
+        "value": 63,
+        "entry_rva": "0xec75ef0",
+        "string_rva": "0xab44ae0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_64",
+      "translation": "患病",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_Illness",
+        "value": 64,
+        "entry_rva": "0xec75f10",
+        "string_rva": "0xab44b00",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_65",
+      "translation": "髌腱炎",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_JumpersKnee",
+        "value": 65,
+        "entry_rva": "0xec75f30",
+        "string_rva": "0xab44470",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_66",
+      "translation": "肾脏受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_KidneyInjury",
+        "value": 66,
+        "entry_rva": "0xec75f50",
+        "string_rva": "0xab44490",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_67",
+      "translation": "膝部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_KneeInjury",
+        "value": 67,
+        "entry_rva": "0xec75f70",
+        "string_rva": "0xab44430",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_68",
+      "translation": "腿部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_LegInjury",
+        "value": 68,
+        "entry_rva": "0xec75f90",
+        "string_rva": "0xab44450",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_69",
+      "translation": "口部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_MouthInjury",
+        "value": 69,
+        "entry_rva": "0xec75fb0",
+        "string_rva": "0xab443f0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_70",
+      "translation": "肌肉受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_MuscleInjury",
+        "value": 70,
+        "entry_rva": "0xec75fd0",
+        "string_rva": "0xab44410",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_71",
+      "translation": "颈部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_NeckInjury",
+        "value": 71,
+        "entry_rva": "0xec75ff0",
+        "string_rva": "0xab443a8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_72",
+      "translation": "后交叉韧带损伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_PclKneeInjury",
+        "value": 72,
+        "entry_rva": "0xec76010",
+        "string_rva": "0xab443c8",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_73",
+      "translation": "骨盆受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_PelvisInjury",
+        "value": 73,
+        "entry_rva": "0xec76030",
+        "string_rva": "0xab44578",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_74",
+      "translation": "肺炎",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_Pneumonia",
+        "value": 74,
+        "entry_rva": "0xec76050",
+        "string_rva": "0xab44598",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_75",
+      "translation": "肋部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_RibInjury",
+        "value": 75,
+        "entry_rva": "0xec76070",
+        "string_rva": "0xab44530",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_76",
+      "translation": "肩部受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_ShoulderInjury",
+        "value": 76,
+        "entry_rva": "0xec76090",
+        "string_rva": "0xab44550",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_77",
+      "translation": "大腿受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_ThighInjury",
+        "value": 77,
+        "entry_rva": "0xec760b0",
+        "string_rva": "0xab444f0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_78",
+      "translation": "疲劳",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_Tired",
+        "value": 78,
+        "entry_rva": "0xec760d0",
+        "string_rva": "0xab44510",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_79",
+      "translation": "脚趾受伤",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_ToeInjury",
+        "value": 79,
+        "entry_rva": "0xec760f0",
+        "string_rva": "0xab444b0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_80",
+      "translation": "扁桃体炎",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_Tonsillitis",
+        "value": 80,
+        "entry_rva": "0xec76110",
+        "string_rva": "0xab444d0",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_81",
+      "translation": "病毒感染",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_Virus",
+        "value": 81,
+        "entry_rva": "0xec76130",
+        "string_rva": "0xab44670",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    },
+    {
+      "key": "injuryname_82",
+      "translation": "未明确伤病",
+      "evidence": {
+        "file": "FC27.exe",
+        "enum": "InjuryDetailedType_Unknown",
+        "value": 82,
+        "entry_rva": "0xec76150",
+        "string_rva": "0xab44690",
+        "dll_evidence": "FCLiveEditor.DLL RVA0x2E3C70 formats injuryname_{}, loop1..84 through0x2E3D0A"
+      },
+      "notes": "Namespace corroborated by official FIFA23 LE EN injuryname_1..35 and current EXE same1..35. Current EXE authoritative;26 now BruisedShoulder. Current reflected table ends82;83/84 unsupported."
+    }
+  ],
+  "unresolved": [
+    {
+      "keys": [
+        "player_contract_role_0"
+      ],
+      "reason": "DLL constructs role0 but FC27.exe offer-role table only explicitly names1..5. Separate -1 unknown exists; no basis to call0 none."
+    },
+    {
+      "keys": [
+        "injuryname_83",
+        "injuryname_84"
+      ],
+      "reason": "DLL generates1..84, but current EXE reflected InjuryDetailedType ends82 Unknown (then -1 Invalid); original current-version localization absent."
+    },
+    {
+      "keys": [
+        "injury_duration_0",
+        "injury_duration_1",
+        "injury_duration_2",
+        "injury_duration_3",
+        "injury_duration_4",
+        "injury_duration_5",
+        "injury_duration_6",
+        "injury_duration_7",
+        "injury_duration_8",
+        "injury_duration_9",
+        "injury_duration_10"
+      ],
+      "reason": "DLL RVA0x2EA29F..0x2EA562 pairs label suffixes directly with ordinal0..10, not day values. No conversion schedule found; cannot infer days/weeks from ordinal."
+    },
+    {
+      "keys": [
+        "player_role_50",
+        "player_role_51",
+        "player_role_52",
+        "player_role_150",
+        "player_role_151",
+        "player_role_152"
+      ],
+      "reason": "Current EXE proves WG_FalseWinger and ST_RoamingStriker exist, but base role IDs37/38 at0x1AA018/0x1AA085 differ from LE position-specific IDs. Another role name enum maps FalseWinger31/RoamingStriker32 at0x24004A/0x24005F. Neither proves persistent role50..52 ordering; do not conflate spaces."
+    },
+    {
+      "keys": [
+        "teamkittypetechid_0",
+        "teamkittypetechid_1",
+        "teamkittypetechid_2",
+        "teamkittypetechid_3",
+        "teamkittypetechid_4",
+        "teamkittypetechid_5",
+        "teamkittypetechid_6",
+        "teamkittypetechid_7",
+        "teamkittypetechid_8",
+        "teamkittypetechid_9",
+        "teamkittypetechid_10",
+        "teamkittypetechid_11",
+        "teamkittypetechid_12",
+        "teamkittypetechid_13",
+        "teamkittypetechid_14",
+        "teamkittypetechid_15",
+        "teamkittypetechid_16",
+        "teamkittypetechid_17",
+        "teamkittypetechid_18",
+        "teamkittypetechid_19",
+        "teamkittypetechid_20",
+        "teamkittypetechid_21",
+        "teamkittypetechid_22",
+        "kits_tab_0",
+        "kits_tab_1",
+        "kits_tab_2",
+        "kits_tab_3",
+        "kits_tab_4",
+        "kits_tab_5",
+        "kits_tab_6",
+        "kits_tab_7",
+        "kits_tab_8",
+        "kits_tab_9",
+        "kits_tab_10",
+        "kits_tab_11",
+        "kits_tab_12",
+        "kits_tab_13",
+        "kits_tab_14",
+        "kits_tab_15",
+        "kits_tab_16",
+        "kits_tab_17",
+        "kits_tab_18",
+        "kits_tab_19",
+        "kits_tab_20",
+        "kits_tab_21",
+        "kits_tab_22"
+      ],
+      "reason": "Official FIFA23 LE idmap names0 HOME,1 AWAY,2 GK,3 THIRD;4..22 are literally numeric slots. Current EXE reflected KitType is a different space (THIRD2,ALL3) and cannot be copied. Current exact DB index alignment not re-proved yet; recommend only0..3 after local validation, extended slot labels preserve IDs."
+    }
+  ],
+  "sources": {
+    "dll": "FCLiveEditor.DLL",
+    "exe": "FC27.exe",
+    "official_older_reference": "https://github.com/xAranaktu/FIFA-23-Live-Editor/releases/download/v23.1.3.6/FIFA.23.LE.v23.1.3.6.zip"
+  },
+  "confidence": "Only mappings with current-version binary names/numeric evidence included; injury namespace separately corroborated by official older localization. Chinese wording translates English semantic names, not a claim of extracted official Chinese."
+}
