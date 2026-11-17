@@ -39,7 +39,7 @@ int WinMain(
     _In_ int nShowCmd
 ) {
     HINSTANCE _hInst = hInstance;
-    HICON _hIcon = LoadIcon(nullptr, IDI_APPLICATION), _hIconSm = _hIcon;
+    HICON _hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(1000)), _hIconSm = _hIcon;
     WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, _hInst, _hIcon, NULL, NULL, NULL, _T("LiveEditorLauncherWC"), _hIconSm };
     ::RegisterClassEx(&wc);
 
@@ -51,7 +51,7 @@ int WinMain(
     HWND hwnd = ::CreateWindow(
         wc.lpszClassName,
         _T("GBTGame · FC 27"),
-        WS_OVERLAPPEDWINDOW, x, y, width, height,
+        WS_POPUP | WS_SYSMENU | WS_MINIMIZEBOX, x, y, width, height,
         NULL,
         NULL,
         _hInst,
@@ -72,6 +72,7 @@ int WinMain(
 
     // Setup ImGui Context
     SetupFrontend();
+    LoadBrand(g_pd3dDevice);
     ImGuiIO& io = ImGui::GetIO(); (void)io;
 
     // Setup Platform/Renderer backends
@@ -130,6 +131,7 @@ int WinMain(
 
 
     // Cleanup
+    if (brandTexture) brandTexture->Release();
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
@@ -213,6 +215,14 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
     switch (msg)
     {
+    case WM_NCHITTEST: {
+        POINT point{(short)LOWORD(lParam),(short)HIWORD(lParam)};
+        ScreenToClient(hWnd,&point);
+        RECT client; GetClientRect(hWnd,&client);
+        if (point.y >= 0 && point.y < 68 && point.x < client.right - 90)
+            return HTCAPTION;
+        return HTCLIENT;
+    }
     case WM_SIZE:
         if (g_pd3dDevice != NULL && wParam != SIZE_MINIMIZED)
         {

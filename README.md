@@ -1,8 +1,8 @@
 # GBTGame FC 27 启动器与 Live Editor 简体中文补丁
 
-版本 **v2026.11.18.2**，适配 Live Editor 27.2.0。汉化作者 **A-FEI-**。可在 [GBTGame 论坛](https://bbs.gbtgame.me/) 免费获取。
+版本 **v2026.11.18.3**，适配 Live Editor 27.2.0。汉化作者 **A-FEI-**。可在 [GBTGame 论坛](https://bbs.gbtgame.me/) 免费获取。
 
-[下载运行包](https://github.com/nodesire7/FC27-Live-Editor-zh-CN/releases/tag/v2026.11.18.2) · [汉化进度与全部词条](catalog/README.md) · [剩余编号](catalog/pending.md) · [开发代码](CODE/)
+[下载运行包](https://github.com/nodesire7/FC27-Live-Editor-zh-CN/releases/tag/v2026.11.18.3) · [汉化进度与全部词条](catalog/README.md) · [剩余编号](catalog/pending.md) · [开发代码](CODE/)
 
 ## 安装
 
@@ -18,7 +18,7 @@
 
 ## 启动与设置
 
-运行 GBTGame.FC27.exe，默认游戏入口以游戏目录为工作目录启动 FC27.exe。LE 模式可选择本机已有的 LE 快捷方式或程序。“记住启动模式”保存到当前用户的 LocalAppData/GBTGame/FC27。LE 模式首次使用需要有效的外部入口；本版没有独立实现 LE 加载后端。
+启动器使用论坛官方 Logo 和无系统标题栏的窗口。拖动顶部可移动窗口，右上角 × 可关闭。运行 GBTGame.FC27.exe，默认游戏入口以游戏目录为工作目录启动 FC27.exe。LE 模式可选择本机已有的 LE 快捷方式或程序。“记住启动模式”保存到当前用户的 LocalAppData/GBTGame/FC27。LE 模式首次使用需要有效的外部入口；本版没有独立实现 LE 加载后端。
 
 “编辑器设置”和“游戏功能”读取 C:/FC 27 Live Editor 的 le_config.json 和 le_misc_features.json（如系统盘不同则跟随系统盘）。可修改显示、日志、目录、快捷键现有值及比赛、生涯等选项。保存前检查外部修改并备份原文件。自定义程序注入及进程目标选项未集成。
 

@@ -105,10 +105,37 @@ static void Settings(const char* name) {
     }ImGui::SameLine();if(ImGui::Button("重新读取")){c.doc=nullptr;return;}ImGui::Separator();
     ImGui::BeginChild("config",{0,-42});Fields(c.doc);ImGui::EndChild();
 }
+static ID3D11ShaderResourceView* brandTexture = nullptr;
+static void LoadBrand(ID3D11Device* device) {
+    auto module = GetModuleHandleW(nullptr);
+    auto resource = FindResourceW(module, MAKEINTRESOURCEW(1001), RT_RCDATA);
+    if (!resource || SizeofResource(module,resource) != 96*96*4) return;
+    auto data = LockResource(LoadResource(module,resource));
+    D3D11_TEXTURE2D_DESC desc{};
+    desc.Width=desc.Height=96; desc.MipLevels=desc.ArraySize=1;
+    desc.Format=DXGI_FORMAT_R8G8B8A8_UNORM; desc.SampleDesc.Count=1;
+    desc.Usage=D3D11_USAGE_IMMUTABLE; desc.BindFlags=D3D11_BIND_SHADER_RESOURCE;
+    D3D11_SUBRESOURCE_DATA pixels{data,96*4,0};
+    ID3D11Texture2D* texture=nullptr;
+    if (SUCCEEDED(device->CreateTexture2D(&desc,&pixels,&texture))) {
+        device->CreateShaderResourceView(texture,nullptr,&brandTexture);
+        texture->Release();
+    }
+}
 static void DrawFrontend(HWND hwnd) {
     auto size=ImGui::GetIO().DisplaySize;ImGui::SetNextWindowPos({0,0});ImGui::SetNextWindowSize(size);
     ImGui::Begin("GBTGame",nullptr,ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_NoSavedSettings);
-    ImGui::TextColored({.40f,.90f,.72f,1},"GBTGame");ImGui::SameLine();ImGui::TextUnformatted("FC 27");ImGui::Spacing();
+    if (brandTexture) { ImGui::Image(brandTexture,{44,44}); ImGui::SameLine(); }
+    ImGui::BeginGroup();ImGui::TextColored({.40f,.90f,.72f,1},"GBTGame");
+    ImGui::TextUnformatted("FC 27");ImGui::EndGroup();
+    ImGui::SameLine(size.x-66);
+    auto corner=ImGui::GetCursorScreenPos();
+    if(ImGui::InvisibleButton("关闭启动器",{38,38}))PostMessageW(hwnd,WM_CLOSE,0,0);
+    auto* draw=ImGui::GetWindowDrawList();
+    if(ImGui::IsItemHovered()){draw->AddRectFilled(corner,{corner.x+38,corner.y+38},IM_COL32(130,49,52,255),5);ImGui::SetTooltip("关闭窗口");}
+    draw->AddLine({corner.x+13,corner.y+13},{corner.x+25,corner.y+25},0xffeeeeee,2);
+    draw->AddLine({corner.x+25,corner.y+13},{corner.x+13,corner.y+25},0xffeeeeee,2);
+    ImGui::Spacing();ImGui::Separator();
     if(ImGui::BeginTabBar("pages")){
         const char* pages[]={"启动","编辑器设置","游戏功能"};for(int i=0;i<3;i++)if(ImGui::BeginTabItem(pages[i])){
             try{if(!i)Home(hwnd);else Settings(i==1?"le_config.json":"le_misc_features.json");}catch(const std::exception& e){status=e.what();}
