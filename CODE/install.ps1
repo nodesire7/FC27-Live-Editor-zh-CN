@@ -8,7 +8,7 @@ if ((Get-FileHash -LiteralPath $targetDll -Algorithm SHA256).Hash.ToLowerInvaria
     throw 'This FCLiveEditor.DLL version is not supported. No files were copied.'
 }
 $checksums = Get-Content -LiteralPath (Join-Path $packageRoot 'checksums.json') -Raw | ConvertFrom-Json
-$files = @('GBTGame.FC27.exe', 'FC27LEzh.dll', 'FC27LEzh_font.b85', 'FC27LEzh_ranges.bin', 'loc/eng_us/localize.json')
+$files = @('FC27LEzh.dll', 'FC27LEzh_font.b85', 'FC27LEzh_ranges.bin', 'loc/eng_us/localize.json')
 foreach ($name in $files) {
     $sourceFile = Join-Path $packageRoot $name
     if ((Get-FileHash -LiteralPath $sourceFile -Algorithm SHA256).Hash.ToLowerInvariant() -ne $checksums.$name) {
