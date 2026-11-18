@@ -2,18 +2,32 @@
 
 版本 **v2026.11.18.4**，适配 Live Editor 27.2.0。汉化作者 **A-FEI-**。可在 [GBTGame 论坛](https://bbs.gbtgame.me/) 免费获取。
 
-[下载运行包](https://github.com/nodesire7/FC27-Live-Editor-zh-CN/releases/tag/v2026.11.18.4) · [汉化进度与全部词条](catalog/README.md) · [剩余编号](catalog/pending.md) · [开发代码](CODE/)
+[下载简洁版 Windows 安装包（EXE，20.7 MB）](https://github.com/nodesire7/FC27-Live-Editor-zh-CN/raw/61caab9cab852ade6e2b87516fc3a36bee343917/downloads/%E3%80%90LE%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%B1%89%E5%8C%96%E5%8D%95%E7%8B%AC%E8%A1%A5%E4%B8%81%E3%80%91GBTGame-FC27-LE-27.2.0-zh-CN-Compact-Setup.exe) · [汉化进度与全部词条](catalog/README.md) · [剩余编号](catalog/pending.md) · [开发代码](CODE/)
 
 ## 安装
 
-退出游戏，将运行包内 **Game** 文件夹的内容复制到含有 FC27.exe 的目录。已有补丁可先备份同名文件。保留随包的字体与组件许可证。使用现有汉化 DLL 加载配置，词表使用 English (eng_us) 路径。游戏目录只需以下文件。
+适配游戏版本 **1.0.142.20665**。安装包包含 Live Editor 27.2.0 核心、配套偏移数据及简体中文资源，需要已有可用的 LE 加载环境。
+
+1. 退出游戏，双击下载的 `【LE简体中文汉化单独补丁】GBTGame-FC27-LE-27.2.0-zh-CN-Compact-Setup.exe`。
+2. 确认窗口中的游戏目录。若路径为空或不正确，点击「浏览」，选择包含 `FC27.exe` 的文件夹。
+3. 点击「安装补丁」，看到「安装完成」后点击「完成并关闭」。
+4. 沿用原来的方式启动 LE，在 LE 语言设置中选择 **English (eng_us)**，即可使用简体中文词表。
+
+安装程序覆盖同名文件前，会将旧文件按原目录结构保存到游戏目录下的 `FC27LEzh_backups`。如需恢复旧文件，先退出游戏，再将对应备份中的内容复制回游戏目录。
+
+## 安装内容
 
 | 文件 | 用途 |
 |---|---|
+| FCLiveEditor.DLL | Live Editor 27.2.0 核心 |
+| le_offsets.json | 对应版本的偏移数据 |
 | FC27LEzh.dll | 游戏内字体、文本与署名窗口 |
 | FC27LEzh_font.b85 | 中文与图标字体 |
 | FC27LEzh_ranges.bin | 字体范围 |
 | loc/eng_us/localize.json | 全部 4,316 条显示文本 |
+| FC27LEzh_licenses/ | 霞鹜文楷与 Font Awesome 许可证 |
+
+安装包 SHA-256 为 `30db90768ecc18266542f90b0a5f1b67714ceafd782c6e226f4db5ff71a4a17c`。
 
 ## 进度
 
